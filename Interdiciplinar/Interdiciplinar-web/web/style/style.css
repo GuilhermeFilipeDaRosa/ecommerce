@@ -1,0 +1,511 @@
+html{font:16px/100% Arial}
+body{
+    margin: 0;
+    padding: 0;
+}
+a {text-decoration: none; color: inherit; cursor:pointer;}
+.container,
+.barra-topo,
+.cabecalho,
+.meio-cabecalho,
+.menu,
+.conteudo{
+    box-sizing: border-box;
+}
+.barra-topo{
+    background-color: #444;
+    height: 1.875rem;
+    line-height: 2.1875rem;
+    text-transform: uppercase;
+}
+.cabecalho {
+    background-image: url("../img/logo.png");
+    background-position: 10em;
+    background-size: 10em;
+    background-repeat: no-repeat;
+    background-color: #040404;
+    height: 8rem;
+}
+.cabecalho-adm{
+    background-position: 5em;
+    background-size: 3em;
+    height: 3em;
+}
+.meio-cabecalho{
+    margin: 0 auto;
+    width: 70rem;
+    height: 8rem;
+}
+.logo{
+    float: left;
+    width: 8em;
+    height: 8em;
+}
+.campo-busca{
+    float: left;
+    border-radius: .5em;
+    width: 30em;
+    height: 2.5em;
+    background-color: #1b1b1b;
+    color: #fff;
+    margin: 3em 5em 0 5em;
+    border: .1em solid #fff;
+    padding-left: 1em;
+    font-size: 1.2em;
+    margin-left:260px;
+}
+.carrinho{
+    width: 10em;
+    height: 2.5em;
+    margin-top: 3em;
+    background-color: #1b1b1b;
+    background-image: url("../img/carrinho.png");
+    background-size: 2em;
+    background-repeat: no-repeat;
+    background-position: .18em;
+    color: #fff;
+    float: left;
+    border: .1em solid #fff;
+    border-radius: 2em;
+    cursor: pointer;
+    transition: .6s ease-in-out;
+}
+#cart-total{
+    float: right;
+    padding: .9em .5em;
+    font-size: .8em;
+}
+.barra-menu{
+    clear: both;
+    background: #37f;
+    text-align: center;
+    min-width: 53.7em;
+}
+.barra-menu li{
+    padding: 1em 0;
+}
+.main-menu>li{
+    display: inline-block;
+    width: 10em;
+    text-align: center;
+    color: #fff;
+    transition: .4s;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.main-menu{
+    margin: 0;
+}
+.main-menu li:hover .sub-menu{
+    display: block;
+} 
+.sub-menu{
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin-top: 1em;	
+    float: left;
+    width: 10em; 
+    text-align: left;
+    box-sizing: border-box;      	
+
+}
+.sub-menu:before{
+    position: absolute;
+}
+.sub-menu li{
+    list-style-type: none;
+    padding: .5em;
+    color: #fff;
+    background: #37f;
+}
+.main-menu>li:hover, .sub-menu>li:hover{
+    background: #444;
+}
+.conteudo{
+    background-color: white;
+    min-height: 40em;
+}
+.conteudo-adm{
+    border-top: .2em solid #03f;
+    background-color: #444;
+    width: 100%;
+    min-height: 40em;
+    display: inline-block;
+    min-width: 90em;
+}
+.conteudo-banners {
+    text-align: center;
+    background-color: rgba(10,23,55,0.5);
+}
+.conteudo-banners div{
+    display: inline-block;
+    margin: 1em 2em;
+}
+.conteudo-banners img{
+    width: 20em;
+    transition: .1s;
+}
+.conteudo-banners img:hover{
+    border-radius: 2em;
+    box-shadow: .1em .1em .2em rgba(99,99,99,0.9);
+}
+#dv-catalogo {
+    margin: 2em 5em 0 5em;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+.dv-produto {
+    background: #fefefe;
+    border-radius: 1em;
+    width: 16em;
+    margin: 0.5em auto;
+    padding: .6em;
+    box-shadow: .1em .1em .4em 0 #888888;
+}
+.dv-produto:hover{
+    box-shadow: 0 .1em .1em .2em gray;
+    cursor: pointer;
+
+}
+.dv-produto-nome {
+    text-align: justify;
+    padding: 1em;
+    min-height: 4em;
+    font-weight: bold;
+    font-size: 16px;
+}
+.img-produto {
+    position: relative;
+    padding: .5em;
+    max-width: 15em;
+    max-height: 11em;
+
+}
+.div-produto-preco {
+    height: 1em;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 2em;
+}
+.btn-adicionar {
+    position: relative;
+    color: #fff;
+    background-color: #37f;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 3em;
+    width: 13.3em;
+    border-radius: 4px;
+    margin: 1em auto;
+    cursor: pointer;
+    transform: .1s;
+}
+.btn-adicionar:hover{
+    background-color: #444;
+}
+.rodape{
+    background-color: #000;
+    height: 20em;
+    color: #fff;
+    text-align: center;
+}
+.rodape div {
+    position: relative;
+    top: 10em;
+}
+.tituto-categoria-produto{
+    width: 100%;
+    height: 3em;
+    background: #000;
+}
+.tituto-categoria-produto i, .tituto-categoria-produto span{
+    color: #fff;
+    font-size: 1em;
+    margin: 1em 0 1em 3em;
+}
+.tituto-categoria-produto span, btn-home{
+    cursor: pointer;
+}
+.imagem,.imagem img{
+    width: 31.25em;
+    height: 21.87em;
+    border: .1em solid #fff;
+    cursor: crosshair;
+    display: inline-block;
+}
+.zoom{
+    width: 21.87em;
+    height: 21.87em;
+    border: .1em solid #fff;
+    background: #fff;
+    display: inline-block;
+}
+.detalhes-produto{
+    width: 60em;
+    height: 42em;
+    margin: 3em auto;
+    padding: 1em;
+    background: #444;
+    color: #fff;
+    text-align: center;
+}
+.dv-info-produto{
+    width: 53.5em;
+    margin: 1em;
+    border: .1em solid #fff;
+    text-align: left;
+    background: #fff;
+    color: #444;
+    display: inline-block;
+}
+.dv-info-produto h5{
+    margin: 0;
+    padding-left: 1em;
+}
+.dv-info-produto > .btn-adicionar{
+    position: relative;
+    left: 30em;
+}
+.formCadastro{
+    border: .1em solid #444;
+    margin: 5em auto;
+    padding: 1em;
+    width: 77.8em;
+}
+.formCadastro input{
+    line-height: 2em;
+    border: .1em solid #000;
+    border-radius: .4em;
+}
+.formCadastro input:focus{
+    background-color: #e3e3e3;
+}
+.formCadastro div{
+    margin-bottom: 1em;
+}
+.ccliente{
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+}
+#ccliente{
+    width: 9.8em;
+}
+.nome{
+    width: 78em;
+}
+#nome{
+    width: 66.68em;
+}
+.cpf{
+    float: left;
+    width: 20em;
+    margin-right: 1em;
+}
+#cpf{
+    width: 19.8em;
+}
+.dataNascimento{
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+}
+#dataNascimento{
+    width: 9.8em;
+}
+.telefone{
+    float: left;
+    width: 20em;
+    margin-right: 1em;
+}
+#fone{
+    width: 19.8em;
+}
+.email{
+    float: left;
+    width: 24.68em;
+}
+#email{
+    width: 24.5em;
+}
+.cep{
+    float: left;
+    width: 15em;
+    margin-right: 1em;
+}
+#cep{
+    width: 14.8em;
+}
+.cidade{
+    float: left;
+    width: 15em;
+    margin-right: 1em;
+}
+#cidade{
+    width: 14.8em;
+}
+.bairro{
+    float: left;
+    width: 22.3em;
+    margin-right: 1em;
+}
+#bairro{
+    width: 22.2em;
+}
+.estado{
+    float: left;
+    width: 22.3em;
+}
+#estado{
+    width: 22.2em;
+}
+.endereco{
+    float: left;
+    margin-right: 1em;
+    width: 35.6em;
+}
+#endereco{
+    width: 35.4em;
+}
+.numero {
+    float: left;
+    margin-right: 1em;
+    width: 10em;
+}
+#numero{
+    width: 9.8em;
+}
+.complemento{
+    float: left;
+    width: 30.2em;
+}
+#complemento{
+    width: 30em;
+}
+.senha {
+    float: left;
+    width: 38.45em;
+    margin-right: 1em;
+}
+#senha{
+    width: 38.22em;
+}
+.confsenha{
+    float: left;
+    width: 38.46em;
+}
+#confsenha{
+    width: 38.22em;
+}
+.btn-finalizar{
+    clear: both;
+    height: 4em;
+}
+#enviar{
+    float: right;
+    width: 7em;
+    height: 2em;
+    border: none;
+    background: rgba(0, 0, 0,.5);
+    color: #fff;
+    font-size: 1.7em;
+}
+#enviar:hover{
+    text-shadow: .05em .05em .05em black;
+    box-shadow: .05em .05em .05em black;
+    cursor: pointer;
+}
+.menu-adm-esquerdo{
+    float: left;
+    width: 19.1%;
+    height: 40em;
+    background-color: rgb(0,0,0,.5);
+}
+.vertical-nav {
+    height:auto;
+    list-style:none;
+    margin: 0;
+}
+.vertical-nav li {
+    position: relative;
+    left: -2.5em;
+    padding: 1em;
+    width: 15em;
+    height: 1em;
+    cursor: pointer;
+    color: #fff;
+    transition: .2s;
+}
+.vertical-nav li:hover {
+    background-color:#03f;
+}
+.vertical-nav li a {
+    font-family:Calibri, Arial;
+    font-size: 1.2em;
+    font-weight:bold;
+    padding-left: 1em;
+}
+vertical-nav ul li ul {
+    display:none;
+    list-style-type:none;
+}
+.vertical-nav li ul {
+    display: none;
+}
+.vertical-nav li:hover ul {
+    display: block;
+}
+.sub-menu-adm li{
+    list-style-type: none;
+    z-index:1;
+    position:relative;
+    top: -2.05em;
+    left: 13.5em;
+    background-color: rgb(0,0,0,.5);
+    border-left: .2em solid #03f;
+    transition: .2s;
+}
+.forms-adm-direita{
+    float: left;
+    width: 80.9%;
+    background-color: #fcf9f9;
+}
+.dv-campo {
+	padding: .6em 0 0 1.2em;
+	float: left;
+}
+.dv-campo > input {
+    border: .1em solid black;
+    border-radius: .5em;
+	padding: .5em;
+}
+.dv-campo > input:read-only {
+    background: #F3F3F3;
+}
+.dv-botoes {
+	padding: 2em;
+	text-align: center;
+	clear: both;
+}
+.dv-botoes > button {
+	padding: .4em 1em;
+}
+table {
+	width: 100%;
+}
+table, th, td {
+	border: 2px solid gray;
+	border-collapse: collapse;
+}
+th, td {
+	padding: 5px 13px;
+}
+th {
+	background: gainsboro;
+}
+.linhaSelecionada {
+    background: skyblue;
+}

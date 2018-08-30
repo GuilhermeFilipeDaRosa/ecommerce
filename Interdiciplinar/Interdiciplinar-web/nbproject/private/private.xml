@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="grupoInterdiciplinarComProduto">
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/script/cliente.js</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/CadastroClienteServlet.java</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/registrar-cliente.html</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/WEB-INF/glassfish-web.xml</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/nbproject/build-impl.xml</file>
+        </group>
+        <group>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/script/js.js</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/ProdutoServlet.java</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/index.html</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/style/style.css</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/CadastroClienteServlet.java</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/CategoriaServlet.java</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/registraCategoria.html</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/registra-produto.html</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/admRegistraCliente.html</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/MarcaServlet.java</file>
+            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/categorias.html</file>
+        </group>
+    </open-files>
+</project-private>
