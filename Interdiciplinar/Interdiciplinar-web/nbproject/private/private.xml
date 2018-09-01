@@ -11,17 +11,9 @@
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/nbproject/build-impl.xml</file>
         </group>
         <group>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/script/js.js</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/ProdutoServlet.java</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/index.html</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/style/style.css</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/CadastroClienteServlet.java</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/CategoriaServlet.java</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/registraCategoria.html</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/registra-produto.html</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/admRegistraCliente.html</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/src/java/web/MarcaServlet.java</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/pags/categorias.html</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/ProdutoServlet.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/js.js</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/registra-produto.html</file>
         </group>
     </open-files>
 </project-private>

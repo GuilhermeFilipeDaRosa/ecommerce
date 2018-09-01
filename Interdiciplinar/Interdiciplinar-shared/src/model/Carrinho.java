@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author User
  */
-public class Carrinho {
+public class Carrinho implements Serializable{
     private int ccarinho;
     private int cproduto;
     private int qtde;

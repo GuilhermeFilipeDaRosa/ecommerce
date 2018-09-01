@@ -5,12 +5,14 @@
  */
 package model;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author User
  */
-public class Cliente{
+public class Cliente implements Serializable{
     private int ccliente;
     private String nome;
     private String sexo;

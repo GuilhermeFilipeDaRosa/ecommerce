@@ -2,18 +2,18 @@
 //função para ser executada ao carregar a página
 function init() {
     var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
-    
-            var http = new XMLHttpRequest();
-            http.open("GET", URL, true);
-            http.addEventListener("load", function ()
-            {
-                montaGrid(http.responseText);
-            });
-            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            http.send();
+
+    var http = new XMLHttpRequest();
+    http.open("GET", URL, true);
+    http.addEventListener("load", function ()
+    {
+        montaGrid(http.responseText);
+    });
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send();
 }
 
-function montaGrid(dados){
+function montaGrid(dados) {
     //armazena em dvCatalogo a div com id dv-catalogo
     var dvCatalogo = document.querySelector('#dv-catalogo'),
             i, qtde, dvProduto, dvProdutoNome, imgProduto, dvProdutoPreco, btnAdd,
@@ -25,7 +25,7 @@ function montaGrid(dados){
         //define a classe para a div
         dvProduto.className = 'dv-produto';
         //define um id para a div
-        dvProduto.id = 'produto' + produtos[i].codigo;
+        dvProduto.id = produtos[i].codigo;
 
         //cria uma div
         dvProdutoNome = document.createElement('DIV');
@@ -62,12 +62,32 @@ function montaGrid(dados){
         //define o conteudo do button
         btnAdd.textContent = 'Adicionar';
         //adicioma o button btnAdd na div dvProduto
+        btnAdd.addEventListener('click', adicionaCarrinho);
         dvProduto.appendChild(btnAdd);
 
         //adicioma a div dvProduto na div dvCatalogo
         dvCatalogo.appendChild(dvProduto);
     }
 }
+function adicionaCarrinho(e) {
+    if (confirm("Você deseja adicionar este produto ao carrinho?")) {
+        
+        var URL = "http://localhost:8080/interdiciplinar-web/carrinhoServlet",
+            dados = {};
+        
+        dados["produto"] = Number(e.parentNode.id);
+            
+        var http = new XMLHttpRequest();
+        http.open("POST", URL, true);
+        http.addEventListener("load", function () {
+            parseJson(http.responseText);
+        });
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send(JSON.stringify(dados));
 
-
+        alert('Adicionado ao carrinho.');
+    }
+    ;
+}
+;
 init();

@@ -8,10 +8,6 @@
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/PedidoBean.java</file>
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/ClienteBeanLocal.java</file>
         </group>
-        <group>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/ProdutoBean.java</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/CategoriaBean.java</file>
-            <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/MarcaBean.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

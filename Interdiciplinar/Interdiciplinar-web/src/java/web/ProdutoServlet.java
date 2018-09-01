@@ -48,7 +48,6 @@ public class ProdutoServlet extends HttpServlet {
         
         content = leitor.lines().collect(Collectors.joining());
 
-        //System.out.println("Conteudo "+content);
         JsonReader reader = Json.createReader(new StringReader(content));
         JsonObject form = reader.readObject();
 
@@ -67,10 +66,7 @@ public class ProdutoServlet extends HttpServlet {
                 .add("mensagem", retorno)
                 .build();
 
-        saida.write(json.toString());/*for (Autor autor : autorDAO.findAll()){
-                String linha[] = {""+autor.getAutor_id(), autor.getNome()};
-                model.addRow(linha);
-            }*/
+        saida.write(json.toString());
     }
 
     @Override

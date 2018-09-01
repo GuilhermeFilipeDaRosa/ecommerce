@@ -29,7 +29,7 @@ public class PromocaoBean {
         try {
             return promocaoDao.save(cpromocao, data_inicial, data_final, qtde, cproduto);
         } catch (Exception ex) {
-            Logger.getLogger(PedidoBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PromocaoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -37,7 +37,7 @@ public class PromocaoBean {
         try{
             return promocaoDao.delete(cpromocao);
         }catch(Exception ex){
-            Logger.getLogger(PedidoBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PromocaoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -45,7 +45,7 @@ public class PromocaoBean {
         try{
             return promocaoDao.update(promocao);
         }catch(Exception ex){
-            Logger.getLogger(PedidoBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PromocaoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -53,7 +53,7 @@ public class PromocaoBean {
         try{
             return promocaoDao.fiendById(cpromocao);
         }catch(Exception ex){
-            Logger.getLogger(PedidoBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PromocaoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

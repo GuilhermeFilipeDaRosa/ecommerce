@@ -35,7 +35,7 @@ public class ProdutoDao {
         String SQL = "SELECT FIRST 12 * FROM PRODUTO ORDER BY CPRODUTO DESC";
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
-            // 
+            
             ResultSet rs = p.executeQuery();
             // Navega a classe e informa o valor do BD
             while (rs.next()) {

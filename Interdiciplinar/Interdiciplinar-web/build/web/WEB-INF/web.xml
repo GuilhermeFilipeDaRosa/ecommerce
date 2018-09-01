@@ -16,6 +16,10 @@
         <servlet-name>CategoriaServlet</servlet-name>
         <servlet-class>web.CategoriaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CarrinhoServlet</servlet-name>
+        <servlet-class>web.CarrinhoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastroClienteServlet</servlet-name>
         <url-pattern>/cadastros</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>CategoriaServlet</servlet-name>
         <url-pattern>/categoriaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CarrinhoServlet</servlet-name>
+        <url-pattern>/carrinhoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
