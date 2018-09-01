@@ -6,7 +6,6 @@
 package web;
 
 import beans.CadastraConsultaProdutoBeanRemote;
-import exceptions.AppException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -58,7 +57,7 @@ public class ProdutoServlet extends HttpServlet {
         qtde = form.getJsonNumber("qtde").intValue();
         imagem = form.getJsonString("imagem").getString();
 
-        String retorno = "";
+        String retorno;
 
         retorno = bean.cadastraProduto(marca, categoria, descricao, precoUnitario, qtde, imagem);
 
@@ -73,7 +72,7 @@ public class ProdutoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
-        JsonObject retorno = null, json = null;
+        JsonObject retorno = null, json;
         String dados = null;
 
         try {

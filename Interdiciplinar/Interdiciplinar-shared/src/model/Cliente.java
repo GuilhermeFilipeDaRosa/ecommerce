@@ -15,7 +15,6 @@ import java.io.Serializable;
 public class Cliente implements Serializable{
     private int ccliente;
     private String nome;
-    private String sexo;
     private String data_nascimento;
     private String cpf;
     private String cep;
@@ -51,14 +50,6 @@ public class Cliente implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getData_nascimento() {

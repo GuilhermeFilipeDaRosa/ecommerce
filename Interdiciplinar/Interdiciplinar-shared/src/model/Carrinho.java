@@ -13,8 +13,6 @@ import java.io.Serializable;
  */
 public class Carrinho implements Serializable{
     private int ccarinho;
-    private int cproduto;
-    private int qtde;
     private int ccliente;
 
     public int getCcarinho() {
@@ -25,22 +23,6 @@ public class Carrinho implements Serializable{
         this.ccarinho = ccarinho;
     }
 
-    public int getCproduto() {
-        return cproduto;
-    }
-
-    public void setCproduto(int cproduto) {
-        this.cproduto = cproduto;
-    }
-
-    public int getQtde() {
-        return qtde;
-    }
-
-    public void setQtde(int qtde) {
-        this.qtde = qtde;
-    }
-
     public int getCcliente() {
         return ccliente;
     }
@@ -48,5 +30,4 @@ public class Carrinho implements Serializable{
     public void setCcliente(int ccliente) {
         this.ccliente = ccliente;
     }
-    
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>CadastroClienteServlet</servlet-name>
-        <servlet-class>web.CadastroClienteServlet</servlet-class>
+        <servlet-name>ClienteServlet</servlet-name>
+        <servlet-class>web.ClienteServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProdutoServlet</servlet-name>
@@ -20,9 +20,13 @@
         <servlet-name>CarrinhoServlet</servlet-name>
         <servlet-class>web.CarrinhoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>web.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>CadastroClienteServlet</servlet-name>
-        <url-pattern>/cadastros</url-pattern>
+        <servlet-name>ClienteServlet</servlet-name>
+        <url-pattern>/clienteServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProdutoServlet</servlet-name>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CarrinhoServlet</servlet-name>
         <url-pattern>/carrinhoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

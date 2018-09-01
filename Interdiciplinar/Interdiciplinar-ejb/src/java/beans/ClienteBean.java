@@ -9,10 +9,9 @@ import dao.ClienteDao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import model.Cliente;
 
 @Stateless
-public class ClienteBean implements CadastroClienteBeanRemote, ClienteBeanLocal {
+public class ClienteBean implements ClienteBeanRemote, ClienteBeanLocal {
 
     private final ClienteDao clienteDao;
 
@@ -32,28 +31,9 @@ public class ClienteBean implements CadastroClienteBeanRemote, ClienteBeanLocal 
         }
         return "Não foi possivel efetuar o cadastro, contatar suporte!";
     }
-    public boolean deletarCliente(int ccliente){
-        try{
-            return clienteDao.delete(ccliente);
-        }catch(Exception ex){
-            Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-    public boolean updateCliente(Cliente cliente){
-        try{
-            return clienteDao.update(cliente);
-        }catch(Exception ex){
-            Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-    public Cliente fiendById(int ccliente){
-        try{
-            return clienteDao.fiendById(ccliente);
-        }catch(Exception ex){
-            Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    
+    @Override
+    public boolean logarCliente(String email, String senha) throws Exception{
+        return clienteDao.login(email, senha);
     }
 }

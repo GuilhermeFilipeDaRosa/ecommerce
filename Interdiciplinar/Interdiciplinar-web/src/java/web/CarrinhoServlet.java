@@ -4,13 +4,16 @@
  * and open the template in the editor.
  */
 package web;
-
-import beans.CadastraMarcaBeanRemote;
+import beans.CarrinhoBeanRemote;
+import beans.CarrinhoItensBeanRemote;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -28,15 +31,16 @@ import javax.servlet.http.HttpServletResponse;
 public class CarrinhoServlet extends HttpServlet {
     
     @EJB
-    //private CarrinhoBeanRemote bean;
+    private CarrinhoBeanRemote beanCarrinho;
+    private CarrinhoItensBeanRemote beanCarrinhoItens;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
 
-        String content;
-        int cproduto;
+        String content, retorno = "Não foi possivel salvar o produto no carrinho.";
+        int cproduto, ccliente;
         
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
@@ -46,11 +50,20 @@ public class CarrinhoServlet extends HttpServlet {
         JsonReader reader = Json.createReader(new StringReader(content));
         JsonObject dados = reader.readObject();
 
-        cproduto = dados.getJsonNumber("descricao").intValue();
+        cproduto = dados.getJsonNumber("cproduto").intValue();
+        ccliente = dados.getJsonNumber("ccliente").intValue();
 
-        String retorno = "";
-
-        //retorno = bean.cadastraMarca(cproduto);
+        try {
+            if(beanCarrinho.possuiCarrinho(ccliente)){
+                retorno = beanCarrinhoItens.salvaProdutoCarrinho(beanCarrinho.retornaCodCarrinho(ccliente), cproduto);
+            } else{
+                beanCarrinho.cadastraCarrino(ccliente);
+                retorno = beanCarrinhoItens.salvaProdutoCarrinho(beanCarrinho.retornaCodCarrinho(ccliente), cproduto);
+            }
+            //retorno = bean.possuiCarrinho(ccliente);
+        } catch (SQLException ex) {
+            Logger.getLogger(CarrinhoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         JsonObject json = Json.createObjectBuilder()
                 .add("mensagem", retorno)

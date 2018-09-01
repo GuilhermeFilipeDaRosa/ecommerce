@@ -5,9 +5,10 @@
  */
 package web;
 
-import beans.CadastroClienteBeanRemote;
+import exceptions.AppException;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.stream.Collectors;
@@ -19,55 +20,45 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import exceptions.AppException;
-import java.io.InputStreamReader;
+import beans.ClienteBeanRemote;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author User
  */
-public class CadastroClienteServlet extends HttpServlet {
-
+public class LoginServlet extends HttpServlet {
+    
     @EJB
-    private CadastroClienteBeanRemote bean;
-
+    private ClienteBeanRemote bean;
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
         
-        String nome, data, cpf, cep, endereco, complemento, bairro, estado, cidade, telefone, email, senha, content;
-        int numero;
+        String email, senha, content;
+        boolean retorno = false;
 
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
         
         content = leitor.lines().collect(Collectors.joining());
 
-        //System.out.println("Conteudo "+content);
         JsonReader reader = Json.createReader(new StringReader(content));
         JsonObject form = reader.readObject();
 
-        nome = form.getJsonString("nome").getString();
-        data = form.getJsonString("data_nascimento").getString();
-        cpf = form.getJsonString("cpf").getString();
-        cep = form.getJsonString("cep").getString();
-        endereco = form.getJsonString("endereco").getString();
-        numero = form.getJsonNumber("numero").intValue();
-        complemento = form.getJsonString("complemento").getString();
-        bairro = form.getJsonString("bairro").getString();
-        estado = form.getJsonString("estado").getString();
-        cidade = form.getJsonString("cidade").getString();
-        telefone = form.getJsonString("telefone").getString();
         email = form.getJsonString("email").getString();
         senha = form.getJsonString("senha").getString();
-       
-        String retorno = "";
+        
         try {
-            retorno = bean.cadastraCliente(numero, nome, data, cpf, cep, endereco, complemento, bairro, estado, 
-                    cidade, telefone, email, senha);
-        } catch (AppException ex) {
-            retorno = ex.getMessage();
+            retorno = bean.logarCliente(email, senha);
+            if(retorno){
+                //session.
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         JsonObject json = Json.createObjectBuilder()

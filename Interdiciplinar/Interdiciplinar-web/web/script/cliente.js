@@ -1,7 +1,7 @@
 function init() {
     document.querySelector("#enviar").addEventListener("click", cadastraCliente);
 }
-var URL = "http://localhost:8080/interdiciplinar-web/cadastros";
+var URL = "http://localhost:8080/interdiciplinar-web/clienteServlet";
 function cadastraCliente() {
     var form = document.querySelector("#form"),
             formData = {},

@@ -13,8 +13,9 @@ import javax.ejb.Remote;
  * @author User
  */
 @Remote
-public interface CadastroClienteBeanRemote {
+public interface ClienteBeanRemote {
     public String cadastraCliente(int numero, String nome, String data, String cpf, String cep, String endereco, 
             String complemento, String bairro, String estado, 
                     String cidade, String telefone, String email, String senha)throws AppException;
+    public boolean logarCliente(String email, String senha)throws Exception;
 }

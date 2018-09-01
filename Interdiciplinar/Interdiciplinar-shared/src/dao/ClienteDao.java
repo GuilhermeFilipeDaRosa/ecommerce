@@ -25,35 +25,7 @@ public class ClienteDao {
     public ClienteDao() throws Exception {
         connection = ConnectionUtil.getConnection();
     }
-
-    public Cliente fiendById(int ccliente) throws Exception {
-        try {
-            Cliente cliente = new Cliente();
-            PreparedStatement p = connection.prepareStatement("SELECT * FROM CLIENTE WHERE CCLIENTE=?");
-            p.setInt(1, cliente.getCcliente());
-            ResultSet rs = p.executeQuery();
-            if (rs.next()) {
-                cliente.setCcliente(rs.getInt("CCLIENTE"));
-                cliente.setNome(rs.getString("NOME"));
-                cliente.setData_nascimento(rs.getString("DATA_NASCIMENTO"));
-                cliente.setCpf(rs.getString("CPF"));
-                cliente.setCep(rs.getString("CEP"));
-                cliente.setEndereco(rs.getString("ENDERECO"));
-                cliente.setNumero(rs.getInt("NUMERO"));
-                cliente.setComplemento(rs.getString("COMPLEMENTO"));
-                cliente.setBairro(rs.getString("BAIRRO"));
-                cliente.setEstado(rs.getString("ESTADO"));
-                cliente.setCidade(rs.getString("CIDADE"));
-                cliente.setTelefone(rs.getString("TELEFONE"));
-                cliente.setEmail(rs.getString("EMAIL"));
-                cliente.setSenha(rs.getString("SENHA"));
-            }
-            return cliente;
-        } catch (SQLException ex) {
-            throw new Exception("Erro ao processar consulta! Contatar Suporte.", ex);
-        }
-    }
-
+    
     public boolean verificaUsuario(String cpf) throws Exception {
         String SQL = "SELECT CLIENTE.NOME FROM CLIENTE WHERE CLIENTE.CPF = ?";
         try {
@@ -104,47 +76,30 @@ public class ClienteDao {
         return "Já possui cliente cadastrado com esse cpf!";
     }
 
-    public boolean delete(int ccliente) throws SQLException {
-        String SQL = "DELETE * FROM CLIENTE WHERE CLIENTE.CCLIENTE = ?";
-        PreparedStatement p = connection.prepareStatement(SQL);
-        p.setInt(1, ccliente);
-        p.execute();
-        return true;
-    }
-
-    public boolean update(Cliente cliente) throws Exception {
-        if (cliente != null && !cliente.equals("")) {
-            String SQL = "UPDATE CLIENTE SET NOME=?, DATA_NASCIMENT0=?, CPF=?, CEP=?, ENDERECO=?, NUMERO=?, "
-                    + " COMPLEMENTO=?, BAIRRO=?, ESTAD0=?, CIDADE=?, TELEFONE=?, EMAIL=?, SENHA=? WHERE CCLIENTE=?";
-            PreparedStatement p = connection.prepareStatement(SQL);
-            p.setString(1,cliente.getNome());
-            //p.setDate(2, new java.sql.Date(cliente.getData_nascimento().getTime()));
-            p.setString(3,cliente.getCpf());
-            p.setString(4,cliente.getCep());
-            p.setString(5,cliente.getEndereco());
-            p.setInt(6,cliente.getNumero());
-            p.setString(7,cliente.getComplemento());
-            p.setString(8,cliente.getBairro());
-            p.setString(9,cliente.getEstado());
-            p.setString(10,cliente.getCidade());
-            p.setString(11,cliente.getTelefone());
-            p.setString(12,cliente.getEmail());
-            p.setString(13,cliente.getSenha());
-            p.setInt(14, cliente.getCcliente());
-            p.setString(15,cliente.getNome());
-            p.execute();
-            return true;
-        }
-        return false;
-    }
-
-    public boolean login(Cliente cliente) throws SQLException, Exception {
+    public boolean login(String email, String senha) throws SQLException, Exception {
+        Cliente cliente = new Cliente();
         try {
-            String SQL = "SELECT CLIENTE.EMAIL, CLIENTE.SENHA WHERE CLIENTE.CCLIENTE = ?";
+            String SQL = "SELECT * "
+                    + " FROM CLIENTE "
+                    + " WHERE CLIENTE.EMAIL = ?"
+                    + " AND CLIENTE.SENHA = ?";
             PreparedStatement p = connection.prepareStatement(SQL);
-            p.setInt(1, cliente.getCcliente());
+            p.setString(1, email);
+            p.setString(2, senha);
             ResultSet rs = p.executeQuery();
             if (rs.next()) {
+                cliente.setCcliente(rs.getInt("CCLIENTE"));
+                cliente.setNome(rs.getString("NOME"));
+                cliente.setData_nascimento(rs.getString("DATA_NASCIMENTO"));
+                cliente.setCep(rs.getString("CEP"));
+                cliente.setCidade(rs.getString("CIDADE"));
+                cliente.setComplemento(rs.getString("COMPLEMENTO"));
+                cliente.setCpf(rs.getString("CPF"));
+                cliente.setEndereco(rs.getString("ENDERECO"));
+                cliente.setEstado(rs.getString("ESTADO"));
+                cliente.setNumero(rs.getInt("NUMERO"));
+                cliente.setTelefone(rs.getString("TELEFONE"));
+                cliente.setBairro(rs.getString("BAIRRO"));
                 cliente.setEmail(rs.getString("EMAIL"));
                 cliente.setSenha(rs.getString("SENHA"));
                 return true;

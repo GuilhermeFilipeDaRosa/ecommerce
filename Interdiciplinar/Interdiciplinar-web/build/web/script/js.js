@@ -75,7 +75,8 @@ function adicionaCarrinho(e) {
         var URL = "http://localhost:8080/interdiciplinar-web/carrinhoServlet",
             dados = {};
         
-        dados["produto"] = Number(e.parentNode.id);
+        dados["cproduto"] = Number(e.target.parentNode.id);
+        dados["ccliente"] = 1;
             
         var http = new XMLHttpRequest();
         http.open("POST", URL, true);
@@ -84,10 +85,10 @@ function adicionaCarrinho(e) {
         });
         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         http.send(JSON.stringify(dados));
-
-        alert('Adicionado ao carrinho.');
-    }
-    ;
-}
-;
+    } ;
+};
+function parseJson(response){
+    var obj = JSON.parse(response);
+    alert(obj.menssagem);
+};
 init();
