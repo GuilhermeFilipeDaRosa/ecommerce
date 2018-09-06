@@ -7,12 +7,14 @@ package beans;
 
 import dao.CarrinhoItensDao;
 import java.sql.SQLException;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author User
  */
-public class CarrinhoItensBean {
+@Stateless
+public class CarrinhoItensBean implements CarrinhoItensBeanRemote{
    
     private final CarrinhoItensDao carrinhoItensDao;
 
@@ -20,6 +22,7 @@ public class CarrinhoItensBean {
         this.carrinhoItensDao = new CarrinhoItensDao();
     }
     
+    @Override
     public String salvaProdutoCarrinho(int ccarinho, int cproduto) throws SQLException{
         return carrinhoItensDao.salvaProdutoCarrinho(ccarinho, cproduto);
     }

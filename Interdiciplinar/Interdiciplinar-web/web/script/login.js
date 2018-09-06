@@ -9,6 +9,8 @@ function logaUsuario() {
     formData["email"] = form.email.value;
     formData["senha"] = form.senha.value;
 
+    //requisicaoHttp("POST", URL, true, parseJson);
+
     var http = new XMLHttpRequest();
     http.open("POST", URL, true);
     http.addEventListener("load", function () {
@@ -24,11 +26,13 @@ function parseJson(jsonData) {
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].value = "";
     }
-    if (obj.mensagem === true) {
-        
-        alert('logado');
+    if (obj.logou === true) {
+        localStorage.setItem("usuario", obj.usuario);
+        localStorage.setItem("cod",obj.codCliente);
+        window.location.href = "../index.html";
+        //alert('logado');
     } else {
-        alert('Cadastre-se');
+        alert('Senha ou usuário incorretos, se não possui conta você deve se cadastrar.');
     }
 }
 init();

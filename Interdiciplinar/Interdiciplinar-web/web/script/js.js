@@ -3,14 +3,8 @@
 function init() {
     var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
 
-    var http = new XMLHttpRequest();
-    http.open("GET", URL, true);
-    http.addEventListener("load", function ()
-    {
-        montaGrid(http.responseText);
-    });
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    http.send();
+    requisicaoHttp("GET", URL, true, montaGrid);
+    
 }
 
 function montaGrid(dados) {
@@ -68,27 +62,40 @@ function montaGrid(dados) {
         //adicioma a div dvProduto na div dvCatalogo
         dvCatalogo.appendChild(dvProduto);
     }
+    
+    if(localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== ''){
+        document.querySelector(".barra-topo").style.display = "none";
+        document.querySelector(".barra-usuario").style.display = "";
+        document.querySelector("#usuario").value = "Olá, "+localStore.getItem("usuario");
+    }
+    
 }
 function adicionaCarrinho(e) {
-    if (confirm("Você deseja adicionar este produto ao carrinho?")) {
-        
-        var URL = "http://localhost:8080/interdiciplinar-web/carrinhoServlet",
-            dados = {};
-        
-        dados["cproduto"] = Number(e.target.parentNode.id);
-        dados["ccliente"] = 1;
-            
-        var http = new XMLHttpRequest();
-        http.open("POST", URL, true);
-        http.addEventListener("load", function () {
-            parseJson(http.responseText);
-        });
-        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        http.send(JSON.stringify(dados));
-    } ;
-};
-function parseJson(response){
+    if (localStorage.getItem("usuario") !== null && !localStorage.getItem("usuario").equals("")) {
+        if (confirm("Você deseja adicionar este produto ao carrinho?")) {
+
+            var URL = "http://localhost:8080/interdiciplinar-web/carrinhoServlet",
+                    dados = {};
+
+            dados["cproduto"] = Number(e.target.parentNode.id);
+            dados["ccliente"] = 1;
+
+            var http = new XMLHttpRequest();
+            http.open("POST", URL, true);
+            http.addEventListener("load", function () {
+                parseJson(http.responseText);
+            });
+            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            http.send(JSON.stringify(dados));
+        }
+    }else{
+        alert("Você precisa estar logado para adicionar um item ao carrinho.");
+    }
+}
+;
+function parseJson(response) {
     var obj = JSON.parse(response);
-    alert(obj.menssagem);
-};
+    alert(obj.mensagem);
+}
+;
 init();

@@ -54,6 +54,6 @@ public class CarrinhoDao {
             p.execute();
             
             retornaCodCarrinho(ccliente);
-        return "Categoria salva com sucesso.";
+        return "Carrinho salvo com sucesso.";
     }
 }

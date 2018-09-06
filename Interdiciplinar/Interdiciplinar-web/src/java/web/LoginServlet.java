@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.ClienteBeanRemote;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cliente;
 
 /**
  *
@@ -37,6 +38,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
+        
+        Cliente cliente = new Cliente();
         
         String email, senha, content;
         boolean retorno = false;
@@ -53,16 +56,15 @@ public class LoginServlet extends HttpServlet {
         senha = form.getJsonString("senha").getString();
         
         try {
-            retorno = bean.logarCliente(email, senha);
-            if(retorno){
-                //session.
-            }
+            cliente = bean.logarCliente(email, senha);
         } catch (Exception ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         JsonObject json = Json.createObjectBuilder()
-                .add("mensagem", retorno)
+                .add("logou", cliente.isLogado())
+                .add("usuario", cliente.getNome())
+                .add("codCliente", cliente.getCcliente())
                 .build();
 
         saida.write(json.toString());

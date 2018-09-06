@@ -14,7 +14,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface CarrinhoBeanRemote {
-    public String cadastraCarrino(int ccliente);
+    public String cadastraCarrinho(int ccliente);
     public boolean possuiCarrinho(int ccliente) throws SQLException;
     public int retornaCodCarrinho(int ccliente) throws SQLException;
 }

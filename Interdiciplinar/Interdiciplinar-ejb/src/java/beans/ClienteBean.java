@@ -9,6 +9,7 @@ import dao.ClienteDao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import model.Cliente;
 
 @Stateless
 public class ClienteBean implements ClienteBeanRemote, ClienteBeanLocal {
@@ -33,7 +34,7 @@ public class ClienteBean implements ClienteBeanRemote, ClienteBeanLocal {
     }
     
     @Override
-    public boolean logarCliente(String email, String senha) throws Exception{
+    public Cliente logarCliente(String email, String senha) throws Exception{
         return clienteDao.login(email, senha);
     }
 }

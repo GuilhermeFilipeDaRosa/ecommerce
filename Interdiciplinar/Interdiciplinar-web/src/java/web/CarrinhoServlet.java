@@ -32,6 +32,7 @@ public class CarrinhoServlet extends HttpServlet {
     
     @EJB
     private CarrinhoBeanRemote beanCarrinho;
+    @EJB
     private CarrinhoItensBeanRemote beanCarrinhoItens;
 
     @Override
@@ -57,10 +58,9 @@ public class CarrinhoServlet extends HttpServlet {
             if(beanCarrinho.possuiCarrinho(ccliente)){
                 retorno = beanCarrinhoItens.salvaProdutoCarrinho(beanCarrinho.retornaCodCarrinho(ccliente), cproduto);
             } else{
-                beanCarrinho.cadastraCarrino(ccliente);
+                beanCarrinho.cadastraCarrinho(ccliente);
                 retorno = beanCarrinhoItens.salvaProdutoCarrinho(beanCarrinho.retornaCodCarrinho(ccliente), cproduto);
             }
-            //retorno = bean.possuiCarrinho(ccliente);
         } catch (SQLException ex) {
             Logger.getLogger(CarrinhoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -29,7 +29,7 @@ public class CarrinhoItensDao {
                     + " VALUES(?, ?)";
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, ccarrinho);
-            p.setInt(1, cproduto);
+            p.setInt(2, cproduto);
             p.execute();
             return "Produto Salvo no carrinho com sucesso.";
         }
@@ -38,12 +38,12 @@ public class CarrinhoItensDao {
 
     public boolean isProdInCarrinho(int ccarrinho, int cproduto) throws SQLException {
         String SQL = "SELECT * "
-                + " FROM CARRINHO"
-                + " WHERE CARRINHO.CCARINHO = ?"
-                + " AND CARRINHO.CPRODUTO = ?";
+                + " FROM CARRINHOITENS"
+                + " WHERE CARRINHOITENS.CCARRINHO = ?"
+                + " AND CARRINHOITENS.CPRODUTO = ?";
         PreparedStatement p = connection.prepareStatement(SQL);
         p.setInt(1, ccarrinho);
-        p.setInt(1, cproduto);
+        p.setInt(2, cproduto);
         ResultSet rs = p.executeQuery();
         if (rs.next()) {
             return true;

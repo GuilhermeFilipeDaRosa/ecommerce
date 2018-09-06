@@ -32,7 +32,10 @@ public class ProdutoDao {
         // Lista para manter os valores do ResultSet
         List<Produto> list = new ArrayList<>();
         Produto objeto;
-        String SQL = "SELECT FIRST 12 * FROM PRODUTO ORDER BY CPRODUTO DESC";
+        String SQL = " SELECT FIRST 12 * "
+                + " FROM PRODUTO "
+                + " WHERE PRODUTO.QTDE > 0"
+                + " ORDER BY CPRODUTO DESC";
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
             

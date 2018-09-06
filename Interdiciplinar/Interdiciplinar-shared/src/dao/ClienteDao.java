@@ -76,7 +76,7 @@ public class ClienteDao {
         return "Já possui cliente cadastrado com esse cpf!";
     }
 
-    public boolean login(String email, String senha) throws SQLException, Exception {
+    public Cliente login(String email, String senha) throws SQLException, Exception {
         Cliente cliente = new Cliente();
         try {
             String SQL = "SELECT * "
@@ -102,11 +102,12 @@ public class ClienteDao {
                 cliente.setBairro(rs.getString("BAIRRO"));
                 cliente.setEmail(rs.getString("EMAIL"));
                 cliente.setSenha(rs.getString("SENHA"));
-                return true;
+                cliente.setLogado(true);
+                return cliente;
             }
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
-        return false;
+        return null;
     }
 }

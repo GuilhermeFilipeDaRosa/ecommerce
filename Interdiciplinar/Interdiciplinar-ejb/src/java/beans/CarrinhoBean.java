@@ -9,11 +9,13 @@ import dao.CarrinhoDao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author User
  */
+@Stateless
 public class CarrinhoBean implements CarrinhoBeanRemote{
     private final CarrinhoDao carrinhoDao;
 
@@ -22,7 +24,7 @@ public class CarrinhoBean implements CarrinhoBeanRemote{
     }
 
     @Override
-    public String cadastraCarrino(int ccliente){
+    public String cadastraCarrinho(int ccliente){
         try {
             return carrinhoDao.save(ccliente);
         } catch (Exception ex) {

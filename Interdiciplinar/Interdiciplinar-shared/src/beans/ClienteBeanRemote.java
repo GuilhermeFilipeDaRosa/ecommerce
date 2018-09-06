@@ -8,6 +8,7 @@ package beans;
 
 import exceptions.AppException;
 import javax.ejb.Remote;
+import model.Cliente;
 /**
  *
  * @author User
@@ -17,5 +18,5 @@ public interface ClienteBeanRemote {
     public String cadastraCliente(int numero, String nome, String data, String cpf, String cep, String endereco, 
             String complemento, String bairro, String estado, 
                     String cidade, String telefone, String email, String senha)throws AppException;
-    public boolean logarCliente(String email, String senha)throws Exception;
+    public Cliente logarCliente(String email, String senha)throws Exception;
 }
