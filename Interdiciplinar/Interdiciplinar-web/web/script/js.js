@@ -5,8 +5,14 @@ function init() {
 
     requisicaoHttp("GET", URL, true, montaGrid);
     
+//    window.onbeforeunload = function () {
+//        if (confirm("Deseja sair desta página?")) {
+//            limpaLocalStorage();
+//            return false;
+//        }
+//        return true;
+//    };
 }
-
 function montaGrid(dados) {
     //armazena em dvCatalogo a div com id dv-catalogo
     var dvCatalogo = document.querySelector('#dv-catalogo'),
@@ -65,20 +71,27 @@ function montaGrid(dados) {
     
     if(localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== ''){
         document.querySelector(".barra-topo").style.display = "none";
-        document.querySelector(".barra-usuario").style.display = "";
-        document.querySelector("#usuario").value = "Olá, "+localStore.getItem("usuario");
-    }
-    
+        document.querySelector(".barra-usuario").style.display = "inline-block";
+        document.querySelector("#sair").addEventListener("click", sair);
+        document.querySelector("#usuario").innerText = "Olá, "+localStorage.getItem("usuario");
+    } 
+    document.querySelector(".fa-shopping-cart").addEventListener("click", abreCarrinho);
+}
+function sair(){
+    document.querySelector(".barra-topo").style.display = "inline-block";
+    document.querySelector(".barra-usuario").style.display = "none";
+    limpaUsuarioLocalStorage();
+    init();
 }
 function adicionaCarrinho(e) {
-    if (localStorage.getItem("usuario") !== null && !localStorage.getItem("usuario").equals("")) {
+    if (localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== "") {
         if (confirm("Você deseja adicionar este produto ao carrinho?")) {
 
             var URL = "http://localhost:8080/interdiciplinar-web/carrinhoServlet",
                     dados = {};
 
             dados["cproduto"] = Number(e.target.parentNode.id);
-            dados["ccliente"] = 1;
+            dados["ccliente"] = Number(localStorage.getItem("cod"));
 
             var http = new XMLHttpRequest();
             http.open("POST", URL, true);
@@ -98,4 +111,11 @@ function parseJson(response) {
     alert(obj.mensagem);
 }
 ;
+function abreCarrinho(){
+    if(isUsuarioLogado()){
+        window.location.href = "pags/carrinho.html";
+    }else{
+        alert("você precisa estar logado.");
+    }
+}
 init();

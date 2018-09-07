@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package web;
+
 import beans.CarrinhoBeanRemote;
 import beans.CarrinhoItensBeanRemote;
 import java.io.BufferedReader;
@@ -23,13 +24,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Produto;
 
 /**
  *
  * @author User
  */
 public class CarrinhoServlet extends HttpServlet {
-    
+
     @EJB
     private CarrinhoBeanRemote beanCarrinho;
     @EJB
@@ -42,10 +44,10 @@ public class CarrinhoServlet extends HttpServlet {
 
         String content, retorno = "Não foi possivel salvar o produto no carrinho.";
         int cproduto, ccliente;
-        
+
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
-        
+
         content = leitor.lines().collect(Collectors.joining());
 
         JsonReader reader = Json.createReader(new StringReader(content));
@@ -55,9 +57,9 @@ public class CarrinhoServlet extends HttpServlet {
         ccliente = dados.getJsonNumber("ccliente").intValue();
 
         try {
-            if(beanCarrinho.possuiCarrinho(ccliente)){
+            if (beanCarrinho.possuiCarrinho(ccliente)) {
                 retorno = beanCarrinhoItens.salvaProdutoCarrinho(beanCarrinho.retornaCodCarrinho(ccliente), cproduto);
-            } else{
+            } else {
                 beanCarrinho.cadastraCarrinho(ccliente);
                 retorno = beanCarrinhoItens.salvaProdutoCarrinho(beanCarrinho.retornaCodCarrinho(ccliente), cproduto);
             }
@@ -70,5 +72,45 @@ public class CarrinhoServlet extends HttpServlet {
                 .build();
 
         saida.write(json.toString());
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        PrintWriter saida = response.getWriter();
+        JsonObject retorno = null, json;
+        String dados = null;
+
+        try {
+//            for (Produto produto : beanCarrinhoItens.getListaProdutos()) {
+//                if (dados != null) {
+//                    dados += ",";
+//                }
+//                json = Json.createObjectBuilder()
+//                        .add("codigo", produto.getCproduto())
+//                        .add("cmarca", produto.getCmarca())
+//                        .add("ccategoria", produto.getCcategoria())
+//                        .add("nome", produto.getDescricao())
+//                        .add("imagem", produto.getImagem())
+//                        .add("valor", produto.getPreco_unitario())
+//                        .add("qtde", produto.getQtde()).build();
+//                if (dados != null) {
+//                    dados += json.toString();
+//                } else {
+//                    dados = json.toString();
+//                }
+//            }
+        } catch (Exception ex) {
+            Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            retorno = Json.createObjectBuilder()
+                    .add("produtos", "[" + dados + "]").build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        saida.write(retorno.toString());
     }
 }

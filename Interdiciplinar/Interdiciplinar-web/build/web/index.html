@@ -12,6 +12,7 @@
         <![endif]-->
         <script src="script/prefixfree.min.js"></script>
         <script src="script/requisicaoHttp.js"></script>
+        <script src="script/localStorage.js"></script>
         <script src="script/js.js"></script>
         <title>E-Commerce</title>
     </head>
@@ -28,14 +29,15 @@
             </div>
             <header class="cabecalho">
                 <div class="meio-cabecalho">
-                    <input class="campo-busca" type="text" placeholder="Digite o que você procura"/>
+                        <input class="campo-busca" type="text" placeholder="Digite o que você procura" maxlength="43"/>
+                        <div id="lupa"></div>
                     <i class="fas fa-shopping-cart"><span class="qtd-cart">0</span></i>
                 </div>
             </header>
 
             <nav class="barra-menu">
                 <ul class="main-menu">
-                    <li>INICIO</li>
+                    <li><a href="index.html"> INÍCIO</a></li>
                     <li>CONSOLES
                         <ul class="sub-menu">
                             <li>NINTENDO WII</li>

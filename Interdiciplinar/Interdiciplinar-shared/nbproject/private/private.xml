@@ -7,25 +7,6 @@
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-shared/src/dao/ClienteDao.java</file>
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-shared/src/beans/CadastroClienteBeanRemote.java</file>
         </group>
-        <group>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/Carrinho.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/Produto.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/CarrinhoItens.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/beans/ClienteBeanRemote.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/Compra.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/Marca.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/Categoria.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/Promocao.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/Cliente.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/CarrinhoDao.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/util/ConnectionUtil.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/beans/CarrinhoItensBeanRemote.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/ProdutoDao.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/CarrinhoItensDao.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/CategoriaDao.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/ClienteDao.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/CompraItens.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/beans/CarrinhoBeanRemote.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

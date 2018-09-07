@@ -12,18 +12,18 @@ import java.io.Serializable;
  * @author User
  */
 public class CarrinhoItens implements Serializable{
-    private int ccarinhoItens;
+    private int ccarrinhoItens;
     private int ccarrinho;
     private int cproduto;
 
-    public int getCcarinhoItens() {
-        return ccarinhoItens;
+    public int getCcarrinhoItens() {
+        return ccarrinhoItens;
     }
 
-    public void setCcarinhoItens(int ccarinhoItens) {
-        this.ccarinhoItens = ccarinhoItens;
+    public void setCcarrinhoItens(int ccarrinhoItens) {
+        this.ccarrinhoItens = ccarrinhoItens;
     }
-
+    
     public int getCcarrinho() {
         return ccarrinho;
     }

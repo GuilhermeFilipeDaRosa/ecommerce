@@ -30,8 +30,9 @@ function parseJson(jsonData) {
         localStorage.setItem("usuario", obj.usuario);
         localStorage.setItem("cod",obj.codCliente);
         window.location.href = "../index.html";
-        //alert('logado');
     } else {
+        localStorage.setItem("usuario", "");
+        localStorage.setItem("cod", "");
         alert('Senha ou usuário incorretos, se não possui conta você deve se cadastrar.');
     }
 }

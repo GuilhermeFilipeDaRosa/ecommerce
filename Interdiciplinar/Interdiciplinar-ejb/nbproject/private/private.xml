@@ -8,16 +8,6 @@
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/PedidoBean.java</file>
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/ClienteBeanLocal.java</file>
         </group>
-        <group>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/ProdutoBeanLocal.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/CategoriaBean.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/ClienteBean.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/CarrinhoItensBean.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/CategoriaBeanLocal.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/PromocaoBean.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/CarrinhoBean.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/MarcaBean.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-ejb/src/java/beans/ProdutoBean.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

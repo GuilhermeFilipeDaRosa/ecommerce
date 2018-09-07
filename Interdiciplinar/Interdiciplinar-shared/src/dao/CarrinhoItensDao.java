@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import model.CarrinhoItens;
 import util.ConnectionUtil;
 
 /**
@@ -49,5 +52,32 @@ public class CarrinhoItensDao {
             return true;
         }
         return false;
+    }
+    
+    public List<CarrinhoItens> getListaCarrinhoItens() throws Exception {
+        List<CarrinhoItens> list = new ArrayList<>();
+        CarrinhoItens objeto;
+        String SQL = " SELECT * "
+                + " FROM CARRINHOITENS "
+                + " WHERE CARRINHOITENS.CCARRINO = ?";
+        try {
+            PreparedStatement p = connection.prepareStatement(SQL);
+            
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                objeto = new CarrinhoItens();
+                objeto.setCcarrinho(rs.getInt("CCARRINHO"));
+                objeto.setCcarrinhoItens(rs.getInt("CCARRINHOITENS"));
+                objeto.setCproduto(rs.getInt("CPRODUTO"));
+                
+                list.add(objeto);
+            }
+            rs.close();
+            p.close();
+        } catch (SQLException ex) {
+            throw new Exception(ex);
+        }
+        
+        return list;
     }
 }
