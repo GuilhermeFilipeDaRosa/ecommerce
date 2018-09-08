@@ -34,7 +34,7 @@ public class PesquisaServlet extends HttpServlet {
     private ProdutoBeanRemote bean;
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
         JsonObject retorno = null, json;

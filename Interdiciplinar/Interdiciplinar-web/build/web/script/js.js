@@ -5,13 +5,6 @@ function init() {
 
     requisicaoHttp("GET", URL, true, montaGrid, null);
 
-//    window.onbeforeunload = function () {
-//        if (confirm("Deseja sair desta página?")) {
-//            limpaLocalStorage();
-//            return false;
-//        }
-//        return true;
-//    };
 }
 function montaGrid(dados) {
     //armazena em dvCatalogo a div com id dv-catalogo
@@ -81,10 +74,23 @@ function montaGrid(dados) {
 function pesquisaProduto() {
     var URL = "http://localhost:8080/interdiciplinar-web/pesquisaServlet",
             dados = {};
-            
+
     if (document.querySelector(".campo-busca").value) {
         dados["pesquisa"] = document.querySelector(".campo-busca").value;
-        requisicaoHttp("GET", URL, true, montaGrid, dados);
+
+        var http = new XMLHttpRequest();
+        http.open("POST", URL, true);
+        http.addEventListener("load", function () {
+            if (JSON.parse(JSON.parse(http.responseText).produtos)[0] !== null && JSON.parse(JSON.parse(http.responseText).produtos).length > 0) {
+                document.querySelector('#dv-catalogo').innerHTML = "";
+                montaGrid(http.responseText);
+            }else{
+                alert("Nenhum produto encontrado com está descrição.");
+            }
+        });
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send(JSON.stringify(dados));
+
     }
 }
 function sair() {

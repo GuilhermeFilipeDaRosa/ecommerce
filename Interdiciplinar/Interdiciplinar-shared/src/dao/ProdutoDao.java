@@ -9,9 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import model.Produto;
 import util.ConnectionUtil;
@@ -27,17 +25,18 @@ public class ProdutoDao {
     public ProdutoDao() throws Exception {
         connection = ConnectionUtil.getConnection();
     }
-    
-    public List<Produto>getListaSearch(String pesquisa) throws Exception{
+
+    public List<Produto> getListaSearch(String pesquisa) throws Exception {
+        pesquisa = "'%"+pesquisa.toLowerCase()+"%'";
         List<Produto> list = new ArrayList<>();
         Produto objeto;
-        String SQL = " SELECT FIRST 12 * "
+        
+        String SQL = " SELECT * "
                 + " FROM PRODUTO "
                 + " WHERE PRODUTO.QTDE > 0"
-                + " AND LOWER(PRODUTO.DESCRICAO) LIKE LOWER('%?%')";
+                + " AND LOWER(PRODUTO.DESCRICAO) LIKE "+pesquisa;
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
-            p.setString(1, pesquisa);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
                 objeto = new Produto();
@@ -49,7 +48,7 @@ public class ProdutoDao {
                 objeto.setQtde(rs.getInt("QTDE"));
                 objeto.setImagem(rs.getString("IMAGEM"));
                 objeto.setDataCadastro("DATA_CADASTRO");
-                
+
                 list.add(objeto);
             }
             rs.close();
@@ -59,7 +58,7 @@ public class ProdutoDao {
         }
         return list;
     }
-    
+
     public List<Produto> getListaProdutos() throws Exception {
         List<Produto> list = new ArrayList<>();
         Produto objeto;
@@ -80,7 +79,7 @@ public class ProdutoDao {
                 objeto.setQtde(rs.getInt("QTDE"));
                 objeto.setImagem(rs.getString("IMAGEM"));
                 objeto.setDataCadastro("DATA_CADASTRO");
-                
+
                 list.add(objeto);
             }
             rs.close();
@@ -104,7 +103,7 @@ public class ProdutoDao {
             p.setInt(5, qtde);
             p.setString(6, imagem);
             java.util.Date d = new java.util.Date();
-            java.sql.Date dt = new java.sql.Date (d.getTime());
+            java.sql.Date dt = new java.sql.Date(d.getTime());
             p.setDate(7, dt);
             p.execute();
         } catch (SQLException ex) {

@@ -1,4 +1,4 @@
-html{font:16px/100% Arial}
+html{font:16px Arial}
 body{
     margin: 0;
     padding: 0;
@@ -18,17 +18,16 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     line-height: 2.1875rem;
     text-transform: uppercase;
     float: right;
-    margin: 0 15px;
+    margin: 0 .93em;
 }
 .barra-usuario{
     display:none;
-    font-size: 10px;
 }
 .barra-usuario #usuario{
-    font-size: 10px;
+    font-size: .62rem;
 }
 #sair{
-    font-size: 14px;
+    font-size: .87em;
 }
 #sair:hover{
     cursor:pointer;
@@ -52,12 +51,12 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     height: 8rem;
 }
 #lupa{
-    border-left: 1px solid gray;
-    width: 71px;
-    height: 44px;
+    border-left: .06em solid gray;
+    width: 4.43em;
+    height: 2.75em;
     float: right;
-    margin-right: 259px;
-    margin-top: -49px;
+    margin-right: 16.18em;
+    margin-top: -3.06em;
 }
 #lupa:hover, .fa-shopping-cart:hover{
     cursor:pointer;
@@ -78,12 +77,12 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     border: .1em solid #fff;
     padding-left: 1em;
     font-size: 1.2em;
-    margin-left:260px;
+    margin-left:16.25rem;
     background-image: url("http://static.wixstatic.com/media/15de06_7d5ae7eac1367427b8ea164ef1ea35c4.png_512");
     background-repeat: no-repeat;
-    background-position: 540px 5px;
-    background-size: 45px 45px;
-    height: 50px;
+    background-position: 33.75rem .31rem;
+    background-size: 2.81rem 2.81rem;
+    height: 3.12rem;
 }
 .carrinho{
     width: 10em;
@@ -110,10 +109,16 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     background: #37f;
     text-align: center;
     width: 100%;
-    height: 48px;
+    height: 3rem;
 }
 .barra-menu li{
     padding: 1em 0;
+}
+.main-menu{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    margin-left: 12.5rem;
 }
 .main-menu>li{
     display: inline-block;
@@ -122,14 +127,8 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     color: #fff;
     cursor: pointer;
     box-sizing: border-box;
-    margin: 0 18px;
+    margin: 0 1.12em;
     transition: .4s;
-}
-.main-menu{
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    margin-left: 200px;
 }
 .main-menu li:hover .sub-menu{
     display: block;
@@ -195,9 +194,9 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     background: #fefefe;
     border-radius: 1em;
     width: 16em;
-    margin: 0.5em auto;
     padding: .6em;
-    box-shadow: .1em .1em .4em 0 #888888;
+    box-shadow: 0.1em 0.1em 0.4em 0 #888888;
+    margin: .5em -20.5em .5em .5em;
 }
 .dv-produto:hover{
     box-shadow: 0 .1em .1em .2em gray;
@@ -209,18 +208,18 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     padding: 1em;
     min-height: 4em;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1em;
 }
 .img-produto {
     position: relative;
     padding: .5em;
     max-width: 15em;
     max-height: 11em;
-
+    margin-left: 2.5em;
 }
 .div-produto-preco {
     height: 1em;
-    padding: 10px;
+    padding: .62em;
     font-weight: bold;
     font-size: 2em;
 }
@@ -233,7 +232,7 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     text-transform: uppercase;
     line-height: 3em;
     width: 13.3em;
-    border-radius: 4px;
+    border-radius: .25em;
     margin: 1em auto;
     cursor: pointer;
     transform: .1s;
@@ -509,44 +508,31 @@ vertical-nav ul li ul {
     background-color: #fcf9f9;
 }
 .dv-campo {
-	padding: .6em 0 0 1.2em;
-	float: left;
+    padding: .6em 0 0 1.2em;
+    float: left;
 }
 .dv-campo > input {
     border: .1em solid black;
     border-radius: .5em;
-	padding: .5em;
+    padding: .5em;
 }
 .dv-campo > input:read-only {
     background: #F3F3F3;
 }
 .dv-botoes {
-	padding: 2em;
-	text-align: center;
-	clear: both;
+    padding: 2em;
+    text-align: center;
+    clear: both;
 }
 .dv-botoes > button {
-	padding: .4em 1em;
+    padding: .4em 1em;
 }
 table {
-	width: 100%;
-}
-table, th, td {
-	border: 2px solid gray;
-	border-collapse: collapse;
-}
-th, td {
-	padding: 5px 13px;
-}
-th {
-	background: gainsboro;
-}
-.linhaSelecionada {
-    background: skyblue;
+    width: 100%;
 }
 .fa-shopping-cart{
     color: white;
-    height: 100px;
+    height: 6.25em;
     margin: 0;
-    margin-top: 72px;
+    margin-top: 4.5em;
 }
