@@ -12,6 +12,6 @@ import javax.ejb.Remote;
  * @author User
  */
 @Remote
-public interface CadastraMarcaBeanRemote {
+public interface MarcaBeanRemote {
     public String cadastraMarca(String descricao);
 }

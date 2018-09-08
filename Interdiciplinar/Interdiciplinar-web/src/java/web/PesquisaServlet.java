@@ -5,6 +5,7 @@
  */
 package web;
 
+import beans.ProdutoBeanRemote;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,26 +23,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Produto;
-import beans.ProdutoBeanRemote;
 
 /**
  *
  * @author User
  */
-public class ProdutoServlet extends HttpServlet {
-
+public class PesquisaServlet extends HttpServlet {
+    
     @EJB
     private ProdutoBeanRemote bean;
-
+    
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
-
-        String descricao, imagem, content;
-        int marca, categoria, qtde;
-        double precoUnitario;
-
+        JsonObject retorno = null, json;
+        String dados = null,content,pesquisa;
+        
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
         
@@ -49,34 +47,11 @@ public class ProdutoServlet extends HttpServlet {
 
         JsonReader reader = Json.createReader(new StringReader(content));
         JsonObject form = reader.readObject();
-
-        marca = form.getJsonNumber("marca").intValue();
-        categoria = form.getJsonNumber("categoria").intValue();
-        descricao = form.getJsonString("descricao").getString();
-        precoUnitario = form.getJsonNumber("precoUnitario").doubleValue();
-        qtde = form.getJsonNumber("qtde").intValue();
-        imagem = form.getJsonString("imagem").getString();
-
-        String retorno;
-
-        retorno = bean.cadastraProduto(marca, categoria, descricao, precoUnitario, qtde, imagem);
-
-        JsonObject json = Json.createObjectBuilder()
-                .add("mensagem", retorno)
-                .build();
-
-        saida.write(json.toString());
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("application/json");
-        PrintWriter saida = response.getWriter();
-        JsonObject retorno = null, json;
-        String dados = null;
-
+        
+        pesquisa = form.getJsonString("pesquisa").getString();
+                
         try {
-            for(Produto produto : bean.getListaProdutos()){
+            for(Produto produto : bean.getListaSearch(pesquisa)){
                 if(dados != null){
                     dados += ",";
                 }

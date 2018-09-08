@@ -28,21 +28,18 @@ public class ProdutoDao {
         connection = ConnectionUtil.getConnection();
     }
     
-    public List<Produto> getListaProdutos() throws Exception {
-        // Lista para manter os valores do ResultSet
+    public List<Produto>getListaSearch(String pesquisa) throws Exception{
         List<Produto> list = new ArrayList<>();
         Produto objeto;
         String SQL = " SELECT FIRST 12 * "
                 + " FROM PRODUTO "
                 + " WHERE PRODUTO.QTDE > 0"
-                + " ORDER BY CPRODUTO DESC";
+                + " AND LOWER(PRODUTO.DESCRICAO) LIKE LOWER('%?%')";
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
-            
+            p.setString(1, pesquisa);
             ResultSet rs = p.executeQuery();
-            // Navega a classe e informa o valor do BD
             while (rs.next()) {
-                // Instancia a classe e informa os valores do BD
                 objeto = new Produto();
                 objeto.setCproduto(rs.getInt("CPRODUTO"));
                 objeto.setCcategoria(rs.getInt("CCATEGORIA"));
@@ -52,7 +49,7 @@ public class ProdutoDao {
                 objeto.setQtde(rs.getInt("QTDE"));
                 objeto.setImagem(rs.getString("IMAGEM"));
                 objeto.setDataCadastro("DATA_CADASTRO");
-                // Inclui na lista
+                
                 list.add(objeto);
             }
             rs.close();
@@ -60,28 +57,38 @@ public class ProdutoDao {
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
-        // Retorna a lista
         return list;
     }
-
-    public Produto fiendById(int id) throws Exception {
+    
+    public List<Produto> getListaProdutos() throws Exception {
+        List<Produto> list = new ArrayList<>();
+        Produto objeto;
+        String SQL = " SELECT FIRST 12 * "
+                + " FROM PRODUTO "
+                + " WHERE PRODUTO.QTDE > 0"
+                + " ORDER BY CPRODUTO DESC";
         try {
-            Produto produto = new Produto();
-            PreparedStatement p = connection.prepareStatement("SELECT * FROM PRODUTO WHERE CPRODUTO=?");
-            p.setInt(1, produto.getCproduto());
+            PreparedStatement p = connection.prepareStatement(SQL);
             ResultSet rs = p.executeQuery();
-            if (rs.next()) {
-                produto.setCproduto(rs.getInt("CPRODUTO"));
-                produto.setCmarca(rs.getInt("CMARCA"));
-                produto.setCcategoria(rs.getInt("CCATEGORIA"));
-                produto.setDescricao(rs.getString("DESCRICAO"));
-                produto.setPreco_unitario(rs.getDouble("PRECO_UNITARIO"));
-                produto.setQtde(rs.getInt("QTDE"));
+            while (rs.next()) {
+                objeto = new Produto();
+                objeto.setCproduto(rs.getInt("CPRODUTO"));
+                objeto.setCcategoria(rs.getInt("CCATEGORIA"));
+                objeto.setCmarca(rs.getInt("CMARCA"));
+                objeto.setDescricao(rs.getString("DESCRICAO"));
+                objeto.setPreco_unitario(rs.getDouble("PRECO_UNITARIO"));
+                objeto.setQtde(rs.getInt("QTDE"));
+                objeto.setImagem(rs.getString("IMAGEM"));
+                objeto.setDataCadastro("DATA_CADASTRO");
+                
+                list.add(objeto);
             }
-            return produto;
+            rs.close();
+            p.close();
         } catch (SQLException ex) {
-            throw new Exception("Erro ao processar consulta! Contatar Suporte.", ex);
+            throw new Exception(ex);
         }
+        return list;
     }
 
     public String save(int marca, int categoria, String descricao, double precoUnitario, int qtde, String imagem) throws Exception {
@@ -104,30 +111,5 @@ public class ProdutoDao {
             throw new Exception(ex);
         }
         return "Produto cadastrado com sucesso.";
-    }
-
-    public boolean delete(int cproduto) throws SQLException {
-        String SQL = "DELETE * FROM PRODUTO WHERE PRODUTO.CPRODUTO = ?";
-        PreparedStatement p = connection.prepareStatement(SQL);
-        p.setInt(1, cproduto);
-        p.execute();
-        return true;
-    }
-
-    public boolean update(int cproduto) throws Exception {
-        Produto produto = new Produto();
-        produto = fiendById(cproduto);
-        if (produto != null && !produto.equals("")) {
-            String SQL = "UPDATE PRODUTO SET CMARCA=?, CCATEGORIA=?, DESCRICAO=?, PRECO_UNITARIO=?, QTDE=? WHERE CPRODUTO=?";
-            PreparedStatement p = connection.prepareStatement(SQL);
-            p.setInt(1, produto.getCmarca());
-            p.setInt(2, produto.getCcategoria());
-            p.setString(3, produto.getDescricao());
-            p.setDouble(4, produto.getPreco_unitario());
-            p.setInt(5, produto.getQtde());
-            p.setInt(6, cproduto);
-            return true;
-        }
-        return false;
     }
 }

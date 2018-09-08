@@ -16,7 +16,7 @@ import model.Marca;
  * @author User
  */
 @Stateless
-public class MarcaBean implements CadastraMarcaBeanRemote, MarcaBeanLocal{
+public class MarcaBean implements MarcaBeanRemote{
     
     private final MarcaDao marcaDao;
 

@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.CarrinhoItens;
+import model.Produto;
 import util.ConnectionUtil;
 
 /**
@@ -54,22 +54,29 @@ public class CarrinhoItensDao {
         return false;
     }
     
-    public List<CarrinhoItens> getListaCarrinhoItens() throws Exception {
-        List<CarrinhoItens> list = new ArrayList<>();
-        CarrinhoItens objeto;
+    public List<Produto> getListaItensCarrinho(int ccarrinho) throws Exception {
+        List<Produto> list = new ArrayList<>();
+        Produto objeto;
         String SQL = " SELECT * "
-                + " FROM CARRINHOITENS "
+                + " FROM PRODUTO"
+                + " INNER JOIN CARRINHOITENS ON (CARRINHOITENS.CPRODUTO = PRODUTO.CPRODUTO)"
                 + " WHERE CARRINHOITENS.CCARRINO = ?";
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
-            
+            p.setInt(1, ccarrinho);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
-                objeto = new CarrinhoItens();
-                objeto.setCcarrinho(rs.getInt("CCARRINHO"));
-                objeto.setCcarrinhoItens(rs.getInt("CCARRINHOITENS"));
-                objeto.setCproduto(rs.getInt("CPRODUTO"));
+                objeto = new Produto();
                 
+                objeto.setCproduto(rs.getInt("CPRODUTO"));
+                objeto.setCcategoria(rs.getInt("CCATEGORIA"));
+                objeto.setCmarca(rs.getInt("CMARCA"));
+                objeto.setDescricao(rs.getString("DESCRICAO"));
+                objeto.setPreco_unitario(rs.getDouble("PRECO_UNITARIO"));
+                objeto.setQtde(rs.getInt("QTDE"));
+                objeto.setImagem(rs.getString("IMAGEM"));
+                objeto.setDataCadastro("DATA_CADASTRO");
+ 
                 list.add(objeto);
             }
             rs.close();

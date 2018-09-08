@@ -79,27 +79,37 @@ public class CarrinhoServlet extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
         JsonObject retorno = null, json;
-        String dados = null;
+        String dados = null, content;
+        int ccliente;
+        
+        BufferedReader leitor = new BufferedReader(
+                new InputStreamReader(request.getInputStream(), "UTF-8"));
+
+        content = leitor.lines().collect(Collectors.joining());
+
+        JsonReader reader = Json.createReader(new StringReader(content));
+        JsonObject dado = reader.readObject();
+        ccliente = dado.getJsonNumber("ccliente").intValue();
 
         try {
-//            for (Produto produto : beanCarrinhoItens.getListaProdutos()) {
-//                if (dados != null) {
-//                    dados += ",";
-//                }
-//                json = Json.createObjectBuilder()
-//                        .add("codigo", produto.getCproduto())
-//                        .add("cmarca", produto.getCmarca())
-//                        .add("ccategoria", produto.getCcategoria())
-//                        .add("nome", produto.getDescricao())
-//                        .add("imagem", produto.getImagem())
-//                        .add("valor", produto.getPreco_unitario())
-//                        .add("qtde", produto.getQtde()).build();
-//                if (dados != null) {
-//                    dados += json.toString();
-//                } else {
-//                    dados = json.toString();
-//                }
-//            }
+            for (Produto produto : beanCarrinhoItens.getListaItensCarrinho(beanCarrinho.retornaCodCarrinho(1))) {
+                if (dados != null) {
+                    dados += ",";
+                }
+                json = Json.createObjectBuilder()
+                        .add("codigo", produto.getCproduto())
+                        .add("cmarca", produto.getCmarca())
+                        .add("ccategoria", produto.getCcategoria())
+                        .add("nome", produto.getDescricao())
+                        .add("imagem", produto.getImagem())
+                        .add("valor", produto.getPreco_unitario())
+                        .add("qtde", produto.getQtde()).build();
+                if (dados != null) {
+                    dados += json.toString();
+                } else {
+                    dados = json.toString();
+                }
+            }
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

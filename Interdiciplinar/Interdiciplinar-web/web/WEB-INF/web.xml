@@ -24,6 +24,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>web.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PesquisaServlet</servlet-name>
+        <servlet-class>web.PesquisaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ClienteServlet</servlet-name>
         <url-pattern>/clienteServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaServlet</servlet-name>
+        <url-pattern>/pesquisaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

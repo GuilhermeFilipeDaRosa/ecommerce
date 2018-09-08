@@ -6,7 +6,9 @@
 package beans;
 
 import java.sql.SQLException;
+import java.util.List;
 import javax.ejb.Remote;
+import model.Produto;
 
 /**
  *
@@ -15,4 +17,5 @@ import javax.ejb.Remote;
 @Remote
 public interface CarrinhoItensBeanRemote {
     public String salvaProdutoCarrinho(int ccarinho, int cproduto) throws SQLException;
+    public List<Produto> getListaItensCarrinho(int ccarrinho) throws Exception;
 }

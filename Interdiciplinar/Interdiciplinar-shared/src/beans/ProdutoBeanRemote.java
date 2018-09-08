@@ -14,8 +14,9 @@ import model.Produto;
  * @author User
  */
 @Remote
-public interface CadastraConsultaProdutoBeanRemote {
+public interface ProdutoBeanRemote {
     public String cadastraProduto(int marca, int categoria, String descricao, double precoUnitario, int qtde, 
             String imagem);
     public List<Produto> getListaProdutos() throws Exception;
+    public List<Produto> getListaSearch(String pesquisa) throws Exception;
 }

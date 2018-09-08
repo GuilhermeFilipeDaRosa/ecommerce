@@ -3,8 +3,8 @@
 function init() {
     var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
 
-    requisicaoHttp("GET", URL, true, montaGrid);
-    
+    requisicaoHttp("GET", URL, true, montaGrid, null);
+
 //    window.onbeforeunload = function () {
 //        if (confirm("Deseja sair desta página?")) {
 //            limpaLocalStorage();
@@ -68,16 +68,26 @@ function montaGrid(dados) {
         //adicioma a div dvProduto na div dvCatalogo
         dvCatalogo.appendChild(dvProduto);
     }
-    
-    if(localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== ''){
+
+    if (localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== '') {
         document.querySelector(".barra-topo").style.display = "none";
         document.querySelector(".barra-usuario").style.display = "inline-block";
         document.querySelector("#sair").addEventListener("click", sair);
-        document.querySelector("#usuario").innerText = "Olá, "+localStorage.getItem("usuario");
-    } 
+        document.querySelector("#usuario").innerText = "Olá, " + localStorage.getItem("usuario");
+    }
     document.querySelector(".fa-shopping-cart").addEventListener("click", abreCarrinho);
+    document.querySelector("#lupa").addEventListener("click", pesquisaProduto);
 }
-function sair(){
+function pesquisaProduto() {
+    var URL = "http://localhost:8080/interdiciplinar-web/pesquisaServlet",
+            dados = {};
+            
+    if (document.querySelector(".campo-busca").value) {
+        dados["pesquisa"] = document.querySelector(".campo-busca").value;
+        requisicaoHttp("GET", URL, true, montaGrid, dados);
+    }
+}
+function sair() {
     document.querySelector(".barra-topo").style.display = "inline-block";
     document.querySelector(".barra-usuario").style.display = "none";
     limpaUsuarioLocalStorage();
@@ -101,7 +111,7 @@ function adicionaCarrinho(e) {
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             http.send(JSON.stringify(dados));
         }
-    }else{
+    } else {
         alert("Você precisa estar logado para adicionar um item ao carrinho.");
     }
 }
@@ -111,10 +121,10 @@ function parseJson(response) {
     alert(obj.mensagem);
 }
 ;
-function abreCarrinho(){
-    if(isUsuarioLogado()){
+function abreCarrinho() {
+    if (isUsuarioLogado()) {
         window.location.href = "pags/carrinho.html";
-    }else{
+    } else {
         alert("você precisa estar logado.");
     }
 }

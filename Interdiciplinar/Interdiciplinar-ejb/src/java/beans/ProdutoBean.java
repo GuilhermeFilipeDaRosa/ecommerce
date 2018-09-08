@@ -17,7 +17,7 @@ import model.Produto;
  * @author User
  */
 @Stateless
-public class ProdutoBean implements CadastraConsultaProdutoBeanRemote, ProdutoBeanLocal {
+public class ProdutoBean implements ProdutoBeanRemote {
 
     private final ProdutoDao produtoDao;
 
@@ -27,7 +27,7 @@ public class ProdutoBean implements CadastraConsultaProdutoBeanRemote, ProdutoBe
 
     @Override
     public String cadastraProduto(int marca, int categoria, String descricao, double precoUnitario, int qtde,
-            String imagem){
+            String imagem) {
         try {
             return produtoDao.save(marca, categoria, descricao, precoUnitario, qtde, imagem);
         } catch (Exception ex) {
@@ -35,26 +35,14 @@ public class ProdutoBean implements CadastraConsultaProdutoBeanRemote, ProdutoBe
         }
         return "Não foi possivel efetuar o cadastro, contatar suporte!";
     }
-    
+
     @Override
     public List<Produto> getListaProdutos() throws Exception {
         return produtoDao.getListaProdutos();
     }
-    
-    public boolean deletarProduto(int cproduto){
-        try{
-            return produtoDao.delete(cproduto);
-        }catch(Exception ex){
-            Logger.getLogger(beans.ProdutoBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-    public Produto fiendById(int cproduto){
-        try{
-            return produtoDao.fiendById(cproduto);
-        }catch(Exception ex){
-            Logger.getLogger(beans.ProdutoBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+       
+    @Override
+    public List<Produto> getListaSearch(String pesquisa) throws Exception {
+        return produtoDao.getListaSearch(pesquisa);
     }
 }

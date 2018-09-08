@@ -5,13 +5,13 @@
  */
 package beans;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author User
  */
-@Local
-public interface CategoriaBeanLocal {
-    
+@Remote
+public interface CategoriaBeanRemote {
+    public String cadastraCategoria(String descricao);
 }

@@ -16,7 +16,7 @@ import model.Categoria;
  * @author User
  */
 @Stateless
-public class CategoriaBean implements CadastraCategoriaBeanRemote, CategoriaBeanLocal{
+public class CategoriaBean implements CategoriaBeanRemote{
     
     private final CategoriaDao categoriaDao;
 

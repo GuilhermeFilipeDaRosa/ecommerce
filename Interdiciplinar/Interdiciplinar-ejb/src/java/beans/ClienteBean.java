@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
 import model.Cliente;
 
 @Stateless
-public class ClienteBean implements ClienteBeanRemote, ClienteBeanLocal {
+public class ClienteBean implements ClienteBeanRemote{
 
     private final ClienteDao clienteDao;
 
