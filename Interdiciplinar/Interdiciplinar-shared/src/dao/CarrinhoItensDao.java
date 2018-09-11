@@ -60,7 +60,8 @@ public class CarrinhoItensDao {
         String SQL = " SELECT * "
                 + " FROM PRODUTO"
                 + " INNER JOIN CARRINHOITENS ON (CARRINHOITENS.CPRODUTO = PRODUTO.CPRODUTO)"
-                + " WHERE CARRINHOITENS.CCARRINO = ?";
+                + " WHERE CARRINHOITENS.CCARRINHO = ?"
+                + " AND PRODUTO.QTDE > 0";
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, ccarrinho);

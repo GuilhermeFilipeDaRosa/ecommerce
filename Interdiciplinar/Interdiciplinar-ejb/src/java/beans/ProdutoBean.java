@@ -6,6 +6,7 @@
 package beans;
 
 import dao.ProdutoDao;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,5 +45,10 @@ public class ProdutoBean implements ProdutoBeanRemote {
     @Override
     public List<Produto> getListaSearch(String pesquisa) throws Exception {
         return produtoDao.getListaSearch(pesquisa);
+    }
+    
+    @Override
+    public double retornaValorUnitario(int cproduto) throws SQLException{
+        return produtoDao.retornaValorUnitario(cproduto);
     }
 }

@@ -1,6 +1,10 @@
-function init(){
-    var URL = "http://localhost:8080/interdiciplinar-web/pesquisaServlet";
-    requisicaoHttp("GET", URL, true, montaGrid);
+function init() {
+    var URL = "http://localhost:8080/interdiciplinar-web/carrinhoItensServlet",
+            dados = {};
+    dados["ccliente"] = Number(localStorage.getItem("cod"));
+
+    requisicaoPost(URL, dados, montaGrid);
+
 }
 function montaGrid(dados) {
     //armazena em dvCatalogo a div com id dv-catalogo
@@ -49,14 +53,29 @@ function montaGrid(dados) {
         //define a classe para o button
         btnAdd.className = 'btn-adicionar';
         //define o conteudo do button
-        btnAdd.textContent = 'Adicionar';
+        btnAdd.textContent = 'Comprar';
         //adicioma o button btnAdd na div dvProduto
-        btnAdd.addEventListener('click', adicionaCarrinho);
+        btnAdd.addEventListener('click', efetuaCompra);
         dvProduto.appendChild(btnAdd);
 
         //adicioma a div dvProduto na div dvCatalogo
         dvCatalogo.appendChild(dvProduto);
     }
+}
+function efetuaCompra(e) {
+    var URL = "http://localhost:8080/interdiciplinar-web/compraServlet",
+            dados = {},
+            qtde = prompt("Informe a quantidade desejada.", 0);
+    
+    if (qtde !== null && qtde > 0) {
+        dados["ccliente"] = Number(localStorage.getItem("cod"));
+        dados["cproduto"] = Number(e.target.parentNode.id);
+        dados["qtde"] = Number(qtde);
+        requisicaoPost(URL, dados, resultCompra);
+    }
+}
+function resultCompra(data) {
+    var resposta = JSON.parse(data);
 }
 init();
 

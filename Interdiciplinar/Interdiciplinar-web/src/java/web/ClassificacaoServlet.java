@@ -5,16 +5,12 @@
  */
 package web;
 
-import beans.CarrinhoBeanRemote;
-import beans.CarrinhoItensBeanRemote;
+import beans.ProdutoBeanRemote;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -29,42 +25,37 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-public class CarrinhoServlet extends HttpServlet {
-
+public class ClassificacaoServlet extends HttpServlet { 
     @EJB
-    private CarrinhoBeanRemote beanCarrinho;
-    @EJB
-    private CarrinhoItensBeanRemote beanCarrinhoItens;
+    private ProdutoBeanRemote bean;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
 
-        String content, retorno = "Não foi possivel salvar o produto no carrinho.";
-        int cproduto, ccliente;
+        String descricao, imagem, content;
+        int marca, categoria, qtde;
+        double precoUnitario;
 
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
-
+        
         content = leitor.lines().collect(Collectors.joining());
 
         JsonReader reader = Json.createReader(new StringReader(content));
-        JsonObject dados = reader.readObject();
+        JsonObject form = reader.readObject();
 
-        cproduto = dados.getJsonNumber("cproduto").intValue();
-        ccliente = dados.getJsonNumber("ccliente").intValue();
+        marca = form.getJsonNumber("marca").intValue();
+        categoria = form.getJsonNumber("categoria").intValue();
+        descricao = form.getJsonString("descricao").getString();
+        precoUnitario = form.getJsonNumber("precoUnitario").doubleValue();
+        qtde = form.getJsonNumber("qtde").intValue();
+        imagem = form.getJsonString("imagem").getString();
 
-        try {
-            if (beanCarrinho.possuiCarrinho(ccliente)) {
-                retorno = beanCarrinhoItens.salvaProdutoCarrinho(beanCarrinho.retornaCodCarrinho(ccliente), cproduto);
-            } else {
-                beanCarrinho.cadastraCarrinho(ccliente);
-                retorno = beanCarrinhoItens.salvaProdutoCarrinho(beanCarrinho.retornaCodCarrinho(ccliente), cproduto);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CarrinhoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String retorno;
+
+        retorno = bean.cadastraProduto(marca, categoria, descricao, precoUnitario, qtde, imagem);
 
         JsonObject json = Json.createObjectBuilder()
                 .add("mensagem", retorno)

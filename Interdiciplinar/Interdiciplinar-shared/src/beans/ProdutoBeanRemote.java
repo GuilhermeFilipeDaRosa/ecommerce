@@ -5,6 +5,7 @@
  */
 package beans;
 
+import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.Remote;
 import model.Produto;
@@ -19,4 +20,5 @@ public interface ProdutoBeanRemote {
             String imagem);
     public List<Produto> getListaProdutos() throws Exception;
     public List<Produto> getListaSearch(String pesquisa) throws Exception;
+    public double retornaValorUnitario(int cproduto) throws SQLException;
 }

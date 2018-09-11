@@ -3,13 +3,13 @@
 function init() {
     var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
 
-    requisicaoHttp("GET", URL, true, montaGrid, null);
-
+    requisicaoHttp("GET", URL, true, montaGrid);
+    
 }
 function montaGrid(dados) {
     //armazena em dvCatalogo a div com id dv-catalogo
     var dvCatalogo = document.querySelector('#dv-catalogo'),
-            i, qtde, dvProduto, dvProdutoNome, imgProduto, dvProdutoPreco, btnAdd,
+            i, qtde, dvProduto, dvProdutoNome, imgProduto, dvProdutoPreco, btnAdd, divImg,
             produtos = JSON.parse(JSON.parse(dados).produtos);
     //percorre cada um dos produtos dentro do objeto infoGridProd
     for (i = 0, qtde = produtos.length; i < qtde; i++) {
@@ -30,13 +30,16 @@ function montaGrid(dados) {
         dvProduto.appendChild(dvProdutoNome);
 
         //cria uma img
+        divImg = document.createElement('div');
+        divImg.className = "divImg";
         imgProduto = document.createElement('IMG');
         //define a classe para a img
         imgProduto.className = 'img-produto';
         //define a imagem que será exibida para o produto
         imgProduto.src = produtos[i].imagem;
         //adicioma a img imgProduto na div dvProduto
-        dvProduto.appendChild(imgProduto);
+        divImg.appendChild(imgProduto);
+        dvProduto.appendChild(divImg);
 
         //cria uma div
         dvProdutoPreco = document.createElement('DIV');
@@ -70,6 +73,12 @@ function montaGrid(dados) {
     }
     document.querySelector(".fa-shopping-cart").addEventListener("click", abreCarrinho);
     document.querySelector("#lupa").addEventListener("click", pesquisaProduto);
+    document.querySelector(".campo-busca").addEventListener("keydown", pesquisaProdutoEnter);
+}
+function pesquisaProdutoEnter(e) {
+    if ( e.keyCode === 13) {
+        pesquisaProduto();
+    }
 }
 function pesquisaProduto() {
     var URL = "http://localhost:8080/interdiciplinar-web/pesquisaServlet",
@@ -84,13 +93,17 @@ function pesquisaProduto() {
             if (JSON.parse(JSON.parse(http.responseText).produtos)[0] !== null && JSON.parse(JSON.parse(http.responseText).produtos).length > 0) {
                 document.querySelector('#dv-catalogo').innerHTML = "";
                 montaGrid(http.responseText);
-            }else{
+            } else {
                 alert("Nenhum produto encontrado com está descrição.");
             }
         });
         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         http.send(JSON.stringify(dados));
 
+    } else if (document.querySelector(".campo-busca").value === '') {
+        var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
+        document.querySelector('#dv-catalogo').innerHTML = "";
+        requisicaoHttp("GET", URL, true, montaGrid, null);
     }
 }
 function sair() {

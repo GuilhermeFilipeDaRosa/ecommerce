@@ -25,6 +25,7 @@ public class ProdutoDao {
     public ProdutoDao() throws Exception {
         connection = ConnectionUtil.getConnection();
     }
+    
 
     public List<Produto> getListaSearch(String pesquisa) throws Exception {
         pesquisa = "'%"+pesquisa.toLowerCase()+"%'";
@@ -110,5 +111,18 @@ public class ProdutoDao {
             throw new Exception(ex);
         }
         return "Produto cadastrado com sucesso.";
+    }
+    
+    public double retornaValorUnitario(int cproduto) throws SQLException{
+        String sql = "SELECT PRODUTO.PRECO_UNITARIO"
+                + " FROM PRODUTO"
+                + " WHERE PRODUTO.CPRODUTO = ?";
+        PreparedStatement p = connection.prepareStatement(sql);
+        p.setInt(1, cproduto);
+        ResultSet rs = p.executeQuery();
+        if (rs.next()) {
+            return rs.getDouble("PRECO_UNITARIO");
+        }
+        return 0;
     }
 }

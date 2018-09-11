@@ -210,6 +210,10 @@ a {text-decoration: none; color: inherit; cursor:pointer;}
     font-weight: bold;
     font-size: 1em;
 }
+.divImg{
+    width: 15em;
+    overflow: hidden;
+}
 .img-produto {
     position: relative;
     padding: .5em;
