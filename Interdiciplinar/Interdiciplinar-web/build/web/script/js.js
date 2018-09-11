@@ -1,4 +1,3 @@
-
 //função para ser executada ao carregar a página
 function init() {
     var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
@@ -74,6 +73,34 @@ function montaGrid(dados) {
     document.querySelector(".fa-shopping-cart").addEventListener("click", abreCarrinho);
     document.querySelector("#lupa").addEventListener("click", pesquisaProduto);
     document.querySelector(".campo-busca").addEventListener("keydown", pesquisaProdutoEnter);
+    classificacao();
+}
+function classificacao(){
+    addEvento(document.querySelector("#categoria1"));
+    addEvento(document.querySelector("#categoria1"));
+    addEvento(document.querySelector("#categoria1"));
+}
+function addEvento(elemento){
+    elemento = elemento.getElementsByTagName("li");
+    for(var a = 0; a < elemento.length; a++){
+        elemento[a].addEventListener("click", classificacaoProdutos);
+    }
+}
+function classificacaoProdutos(e){
+    var url = "http://localhost:8080/interdiciplinar-web/classificacaoServlet",
+            dados = {};
+    dados["descricao"] = e.target.innerText;
+    dados["ccategoria"] = Number(e.target.parentNode.parentNode.id.split("")[e.target.parentNode.parentNode.id.split("").length-1]);
+    var http = new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.addEventListener("load", function () {
+            if (JSON.parse(JSON.parse(http.responseText).produtos)[0] !== null && JSON.parse(JSON.parse(http.responseText).produtos).length > 0) {
+                document.querySelector('#dv-catalogo').innerHTML = "";
+                montaGrid(http.responseText);
+            }
+        });
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send(JSON.stringify(dados));
 }
 function pesquisaProdutoEnter(e) {
     if ( e.keyCode === 13) {

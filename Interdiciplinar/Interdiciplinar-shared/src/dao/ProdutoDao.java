@@ -26,6 +26,40 @@ public class ProdutoDao {
         connection = ConnectionUtil.getConnection();
     }
     
+    public List<Produto> getListaClassificacao(int ccategoria, String descricao) throws Exception{
+        descricao = "'%"+descricao.toLowerCase()+"%'";
+        List<Produto> list = new ArrayList<>();
+        Produto objeto;
+        
+        String SQL = " SELECT * "
+                + " FROM PRODUTO "
+                + " WHERE PRODUTO.QTDE > 0"
+                + " AND PRODUTO.CCATEGORIA = ?"
+                + " AND PRODUTO.DESCRICAO LIKE "+descricao;
+        try {
+            PreparedStatement p = connection.prepareStatement(SQL);
+            p.setInt(1, ccategoria);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                objeto = new Produto();
+                objeto.setCproduto(rs.getInt("CPRODUTO"));
+                objeto.setCcategoria(rs.getInt("CCATEGORIA"));
+                objeto.setCmarca(rs.getInt("CMARCA"));
+                objeto.setDescricao(rs.getString("DESCRICAO"));
+                objeto.setPreco_unitario(rs.getDouble("PRECO_UNITARIO"));
+                objeto.setQtde(rs.getInt("QTDE"));
+                objeto.setImagem(rs.getString("IMAGEM"));
+                objeto.setDataCadastro("DATA_CADASTRO");
+
+                list.add(objeto);
+            }
+            rs.close();
+            p.close();
+        } catch (SQLException ex) {
+            throw new Exception(ex);
+        }
+        return list;
+    }
 
     public List<Produto> getListaSearch(String pesquisa) throws Exception {
         pesquisa = "'%"+pesquisa.toLowerCase()+"%'";
