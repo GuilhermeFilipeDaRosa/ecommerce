@@ -1,5 +1,5 @@
 function init() {
-    document.querySelector("#enviar").addEventListener("click", cadastraProduto);
+    document.querySelector("#salvar").addEventListener("click", cadastraProduto);
 }
 var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
 function cadastraProduto() {

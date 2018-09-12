@@ -65,6 +65,7 @@ public class LoginServlet extends HttpServlet {
                 .add("logou", cliente.isLogado())
                 .add("usuario", cliente.getNome())
                 .add("codCliente", cliente.getCcliente())
+                .add("session", request.getSession().getId())
                 .build();
 
         saida.write(json.toString());

@@ -24,6 +24,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Compra;
+import model.Produto;
 
 /**
  *
@@ -74,6 +76,41 @@ public class CompraServlet extends HttpServlet {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        saida.write(retorno.toString());
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        PrintWriter saida = response.getWriter();
+        JsonObject retorno = null, json;
+        String dados = null;
+
+        try {
+            for(Compra compra : beanCompra.retornaComprasPendentes()){
+                if(dados != null){
+                    dados += ",";
+                }
+                json = Json.createObjectBuilder()
+                        .add("ccompra", compra.getCcompra())
+                        .add("ccliente", compra.getCcliente())
+                        .add("data", compra.getData())
+                        .add("status", compra.getStatus()).build();
+                if(dados != null){
+                    dados += json.toString();
+                }else{
+                    dados = json.toString();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            retorno = Json.createObjectBuilder()
+                    .add("produtos", "["+dados+"]").build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         saida.write(retorno.toString());
     }
 }

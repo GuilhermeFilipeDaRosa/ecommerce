@@ -87,7 +87,8 @@ public class ProdutoServlet extends HttpServlet {
                         .add("nome", produto.getDescricao())
                         .add("imagem", produto.getImagem())
                         .add("valor", produto.getPreco_unitario())
-                        .add("qtde", produto.getQtde()).build();
+                        .add("qtde", produto.getQtde())
+                        .add("session", request.getSession().getId()).build();
                 if(dados != null){
                     dados += json.toString();
                 }else{

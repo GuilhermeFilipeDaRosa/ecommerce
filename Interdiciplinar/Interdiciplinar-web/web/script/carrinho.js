@@ -61,6 +61,19 @@ function montaGrid(dados) {
         //adicioma a div dvProduto na div dvCatalogo
         dvCatalogo.appendChild(dvProduto);
     }
+    if (localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== '') {
+        document.querySelector(".barra-topo").style.display = "none";
+        document.querySelector(".barra-usuario").style.display = "inline-block";
+        document.querySelector("#sair").addEventListener("click", sair);
+        document.querySelector("#usuario").innerText = "Olá, " + localStorage.getItem("usuario");
+    }
+    
+}
+function sair() {
+    document.querySelector(".barra-topo").style.display = "inline-block";
+    document.querySelector(".barra-usuario").style.display = "none";
+    limpaUsuarioLocalStorage();
+    window.location.href = "../index.html";
 }
 function efetuaCompra(e) {
     var URL = "http://localhost:8080/interdiciplinar-web/compraServlet",

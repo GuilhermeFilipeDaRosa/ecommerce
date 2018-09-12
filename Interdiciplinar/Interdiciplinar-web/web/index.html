@@ -13,15 +13,15 @@
         <script src="script/prefixfree.min.js"></script>
         <script src="script/requisicaoHttp.js"></script>
         <script src="script/localStorage.js"></script>
-        <script src="script/js.js"></script>
+        <script src="script/listaProdutos.js"></script>
         <title>E-Commerce</title>
     </head>
     <body>
 
         <div class="container">
             <div class="barra-topo">
-                <i class="fas fa-user"><a href="pags/login.html"> Login</a></i>
-                <span class="cadastro"><a href="pags/registrar-cliente.html">Cadastro</a></span>
+                <i class="fas fa-address-card"><a href="pags/principalCliente.html"> Cadastro</a></i>
+                <i class="fas fa-user"><a href="pags/principalLogin.html"> Login</a></i>
             </div>
             <div class="barra-usuario">
                 <span id="usuario"></span>
@@ -29,9 +29,9 @@
             </div>
             <header class="cabecalho">
                 <div class="meio-cabecalho">
-                        <input class="campo-busca" type="text" placeholder="Digite o que você procura" maxlength="43"/>
-                        <div id="lupa"></div>
-                    <i class="fas fa-shopping-cart"><span class="qtd-cart">0</span></i>
+                    <input class="campo-busca" type="text" placeholder="Digite o que você procura" maxlength="43"/>
+                    <div id="lupa"></div>
+                    <i class="carrinho fas fa-shopping-cart"><span class="qtd-cart">0</span></i>
                 </div>
             </header>
 

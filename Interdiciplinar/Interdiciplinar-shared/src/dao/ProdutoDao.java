@@ -31,11 +31,8 @@ public class ProdutoDao {
         List<Produto> list = new ArrayList<>();
         Produto objeto;
         
-        String SQL = " SELECT * "
-                + " FROM PRODUTO "
-                + " WHERE PRODUTO.QTDE > 0"
-                + " AND PRODUTO.CCATEGORIA = ?"
-                + " AND PRODUTO.DESCRICAO LIKE "+descricao;
+        String SQL = " SELECT * FROM PRODUTO  WHERE PRODUTO.QTDE > 0 AND PRODUTO.CCATEGORIA = ?"
+                + " AND LOWER(PRODUTO.DESCRICAO) LIKE "+descricao;
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
             p.setInt(1, ccategoria);

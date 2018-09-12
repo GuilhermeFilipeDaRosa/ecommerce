@@ -11,6 +11,11 @@ function montaGrid(dados) {
             i, qtde, dvProduto, dvProdutoNome, imgProduto, dvProdutoPreco, btnAdd, divImg,
             produtos = JSON.parse(JSON.parse(dados).produtos);
     //percorre cada um dos produtos dentro do objeto infoGridProd
+    
+    if(localStorage.getItem("session") === null || localStorage.getItem("session") !== produtos[0].session){
+        limpaUsuarioLocalStorage();
+    }
+    
     for (i = 0, qtde = produtos.length; i < qtde; i++) {
         //cria uma div
         dvProduto = document.createElement('DIV');
@@ -169,7 +174,7 @@ function parseJson(response) {
 ;
 function abreCarrinho() {
     if (isUsuarioLogado()) {
-        window.location.href = "pags/carrinho.html";
+        window.location.href = "pags/principalCarrinho.html";
     } else {
         alert("você precisa estar logado.");
     }

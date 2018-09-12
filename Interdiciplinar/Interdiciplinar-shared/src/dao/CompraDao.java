@@ -10,6 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Compra;
+import model.Produto;
 import util.ConnectionUtil;
 
 /**
@@ -48,5 +52,29 @@ public class CompraDao {
             return rs.getInt("CCOMPRA");
         }
         return 0;
+    }
+    public List<Compra> retornaComprasPendentes() throws Exception {
+        List<Compra> list = new ArrayList<>();
+        Compra objeto;
+        String SQL = " SELECT * "
+                + " FROM COMPRA "
+                + " WHERE COMPRA.STATUS = 'P'";
+        try {
+            PreparedStatement p = connection.prepareStatement(SQL);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                objeto = new Compra();
+                objeto.setCcompra(rs.getInt("CCOMPRA"));
+                objeto.setCcliente(rs.getInt("CCLIENTE"));
+                objeto.setData(rs.getString("DATA"));
+                objeto.setStatus(rs.getString("STATUS"));
+                list.add(objeto);
+            }
+            rs.close();
+            p.close();
+        } catch (SQLException ex) {
+            throw new Exception(ex);
+        }
+        return list;
     }
 }

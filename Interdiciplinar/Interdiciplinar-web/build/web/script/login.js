@@ -29,10 +29,12 @@ function parseJson(jsonData) {
     if (obj.logou === true) {
         localStorage.setItem("usuario", obj.usuario);
         localStorage.setItem("cod",obj.codCliente);
+        localStorage.setItem("session", obj.session);
         window.location.href = "../index.html";
     } else {
         localStorage.setItem("usuario", "");
         localStorage.setItem("cod", "");
+        localStorage.setItem("session", "");
         alert('Senha ou usuário incorretos, se não possui conta você deve se cadastrar.');
     }
 }
