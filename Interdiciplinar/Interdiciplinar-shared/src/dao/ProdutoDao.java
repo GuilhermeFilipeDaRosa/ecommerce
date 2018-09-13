@@ -91,6 +91,31 @@ public class ProdutoDao {
         return list;
     }
 
+    public Produto retornaDadosProduto(int cproduto) throws SQLException, Exception{
+        Produto objeto = null;
+        String SQL = "SELECT * FROM PRODUTO WHERE CPRODUTO = ?";
+        try {
+            PreparedStatement p = connection.prepareStatement(SQL);
+            ResultSet rs = p.executeQuery();
+            if(rs.next()) {
+                objeto = new Produto();
+                objeto.setCproduto(rs.getInt("CPRODUTO"));
+                objeto.setCcategoria(rs.getInt("CCATEGORIA"));
+                objeto.setCmarca(rs.getInt("CMARCA"));
+                objeto.setDescricao(rs.getString("DESCRICAO"));
+                objeto.setPreco_unitario(rs.getDouble("PRECO_UNITARIO"));
+                objeto.setQtde(rs.getInt("QTDE"));
+                objeto.setImagem(rs.getString("IMAGEM"));
+                objeto.setDataCadastro(rs.getString("DATA_CADASTRO"));
+            }
+            rs.close();
+            p.close();
+        } catch (SQLException ex) {
+            throw new Exception(ex);
+        }
+        return objeto;
+    }
+    
     public List<Produto> getListaProdutos() throws Exception {
         List<Produto> list = new ArrayList<>();
         Produto objeto;
@@ -110,7 +135,7 @@ public class ProdutoDao {
                 objeto.setPreco_unitario(rs.getDouble("PRECO_UNITARIO"));
                 objeto.setQtde(rs.getInt("QTDE"));
                 objeto.setImagem(rs.getString("IMAGEM"));
-                objeto.setDataCadastro("DATA_CADASTRO");
+                objeto.setDataCadastro(rs.getString("DATA_CADASTRO"));
 
                 list.add(objeto);
             }

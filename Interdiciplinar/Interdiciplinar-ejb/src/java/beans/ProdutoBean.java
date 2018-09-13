@@ -56,4 +56,9 @@ public class ProdutoBean implements ProdutoBeanRemote {
     public List<Produto> getListaClassificacao(int ccategoria, String descricao) throws Exception{
         return produtoDao.getListaClassificacao(ccategoria, descricao);
     }
+    
+    @Override
+    public Produto retornaDadosProduto(int cproduto) throws SQLException, Exception{
+        return produtoDao.retornaDadosProduto(cproduto);
+    }
 }

@@ -44,6 +44,7 @@ public class CarrinhoItensServlet extends HttpServlet {
         JsonObject retorno = null, json;
         String dados = null, content;
         int ccliente;
+        boolean saberQtde;
         
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
@@ -84,7 +85,7 @@ public class CarrinhoItensServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         saida.write(retorno.toString());
     }
 }

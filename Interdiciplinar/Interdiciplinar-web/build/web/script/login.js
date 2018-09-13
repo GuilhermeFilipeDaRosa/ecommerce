@@ -3,13 +3,11 @@ function init() {
 }
 var URL = "http://localhost:8080/interdiciplinar-web/loginServlet";
 function logaUsuario() {
-    var form = document.querySelector("#form"),
-            formData = {};
+    var login = document.querySelector(".principalLogin"),//Alterado Jonas
+            loginData = {};
 
-    formData["email"] = form.email.value;
-    formData["senha"] = form.senha.value;
-
-    //requisicaoHttp("POST", URL, true, parseJson);
+    loginData["email"] = login.childNodes[2].previousElementSibling.childNodes[4].value;//Alterado Jonas
+    loginData["senha"] = login.childNodes[4].previousElementSibling.childNodes[4].value;//Alterado Jonas
 
     var http = new XMLHttpRequest();
     http.open("POST", URL, true);
@@ -17,7 +15,7 @@ function logaUsuario() {
         parseJson(http.responseText);
     });
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    http.send(JSON.stringify(formData));
+    http.send(JSON.stringify(loginData));
 }
 function parseJson(jsonData) {
     var obj = JSON.parse(jsonData),

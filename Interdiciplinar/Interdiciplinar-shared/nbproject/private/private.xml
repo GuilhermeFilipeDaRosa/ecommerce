@@ -10,6 +10,8 @@
         <group>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/ProdutoDao.java</file>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/beans/ProdutoBeanRemote.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/beans/CompraBeanRemote.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/CompraDao.java</file>
         </group>
     </open-files>
 </project-private>

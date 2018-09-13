@@ -11,10 +11,11 @@
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/nbproject/build-impl.xml</file>
         </group>
         <group>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/principalCarrinho.html</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/carrinho.js</file>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/ProdutoServlet.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/index.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/js.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/ClassificacaoServlet.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/style/style.css</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/CompraServlet.java</file>
         </group>
     </open-files>
 </project-private>

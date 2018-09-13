@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Produto;
 import beans.ProdutoBeanRemote;
+import java.sql.SQLException;
 
 /**
  *
@@ -88,6 +89,7 @@ public class ProdutoServlet extends HttpServlet {
                         .add("imagem", produto.getImagem())
                         .add("valor", produto.getPreco_unitario())
                         .add("qtde", produto.getQtde())
+                        .add("dataCadastro", produto.getDataCadastro())
                         .add("session", request.getSession().getId()).build();
                 if(dados != null){
                     dados += json.toString();

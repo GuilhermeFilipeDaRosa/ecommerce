@@ -73,12 +73,18 @@ function montaGrid(dados) {
         document.querySelector(".barra-topo").style.display = "none";
         document.querySelector(".barra-usuario").style.display = "inline-block";
         document.querySelector("#sair").addEventListener("click", sair);
-        document.querySelector("#usuario").innerText = "Olá, " + localStorage.getItem("usuario");
+        document.querySelector("#usuario").innerText = "Olá, " + localStorage.getItem("usuario")+"!";
+        qtdeCarrinho(localStorage.getItem("usuario"));
     }
     document.querySelector(".fa-shopping-cart").addEventListener("click", abreCarrinho);
     document.querySelector("#lupa").addEventListener("click", pesquisaProduto);
     document.querySelector(".campo-busca").addEventListener("keydown", pesquisaProdutoEnter);
     classificacao();
+}
+function qtdeCarrinho(cusuario){
+    var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
+
+    requisicaoHttp("GET", URL, true, montaGrid);
 }
 function classificacao(){
     addEvento(document.querySelector("#categoria1"));

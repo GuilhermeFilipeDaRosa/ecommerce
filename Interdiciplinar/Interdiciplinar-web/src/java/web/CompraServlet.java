@@ -32,23 +32,23 @@ import model.Produto;
  * @author User
  */
 public class CompraServlet extends HttpServlet {
-    
+
     @EJB
     private CompraBeanRemote beanCompra;
     @EJB
     private CompraItensBeanRemote beanCompraItens;
     @EJB
     private ProdutoBeanRemote beanProduto;
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
         JsonObject json;
-        String retorno = "Não foi possivel efetuar a compra";
-        String content;
+        String retorno = "Não foi possivel efetuar a compra", content;
+        Produto produto = new Produto();
         int ccliente, cproduto, qtde;
-        
+
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
 
@@ -56,14 +56,19 @@ public class CompraServlet extends HttpServlet {
 
         JsonReader reader = Json.createReader(new StringReader(content));
         JsonObject dados = reader.readObject();
-        
+
         ccliente = dados.getJsonNumber("ccliente").intValue();
         cproduto = dados.getJsonNumber("cproduto").intValue();
         qtde = dados.getJsonNumber("qtde").intValue();
 
         try {
-            if(beanCompra.efetuaCompra(ccliente)){
-                retorno = beanCompraItens.salvaItensCompra(cproduto, beanCompra.retornaCCompra(ccliente), qtde, beanProduto.retornaValorUnitario(cproduto));
+            produto = beanProduto.retornaDadosProduto(cproduto);
+            if (produto.getQtde() < qtde) {
+                if (beanCompra.efetuaCompra(ccliente)) {
+                    retorno = beanCompraItens.salvaItensCompra(cproduto, beanCompra.retornaCCompra(ccliente), qtde, beanProduto.retornaValorUnitario(cproduto));
+                }
+            }else{
+               retorno = "O produto não possui quantidade suficiente.";
             }
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,14 +76,14 @@ public class CompraServlet extends HttpServlet {
 
         try {
             json = Json.createObjectBuilder()
-                    .add("mensagem",retorno).build();
+                    .add("mensagem", retorno).build();
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         saida.write(retorno.toString());
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
@@ -87,8 +92,8 @@ public class CompraServlet extends HttpServlet {
         String dados = null;
 
         try {
-            for(Compra compra : beanCompra.retornaComprasPendentes()){
-                if(dados != null){
+            for (Compra compra : beanCompra.retornaComprasPendentes()) {
+                if (dados != null) {
                     dados += ",";
                 }
                 json = Json.createObjectBuilder()
@@ -96,9 +101,9 @@ public class CompraServlet extends HttpServlet {
                         .add("ccliente", compra.getCcliente())
                         .add("data", compra.getData())
                         .add("status", compra.getStatus()).build();
-                if(dados != null){
+                if (dados != null) {
                     dados += json.toString();
-                }else{
+                } else {
                     dados = json.toString();
                 }
             }
@@ -107,7 +112,7 @@ public class CompraServlet extends HttpServlet {
         }
         try {
             retorno = Json.createObjectBuilder()
-                    .add("produtos", "["+dados+"]").build();
+                    .add("produtos", "[" + dados + "]").build();
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
