@@ -33,4 +33,9 @@ public class CarrinhoItensBean implements CarrinhoItensBeanRemote{
     public List<Produto> getListaItensCarrinho(int ccarrinho) throws Exception {
         return carrinhoItensDao.getListaItensCarrinho(ccarrinho);
     }
+   
+    @Override
+    public int retornaQtdeCarrinho(int ccliente) throws SQLException {
+        return carrinhoItensDao.retornaQtdeCarrinho(ccliente);
+    }
 }

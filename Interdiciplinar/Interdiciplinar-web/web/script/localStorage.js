@@ -2,6 +2,7 @@ function limpaUsuarioLocalStorage() {
     localStorage.setItem("usuario", "");
     localStorage.setItem("cod", "");
     localStorage.setItem("session", "");
+    localStorage.setItem("qtdeCarrinho", "");
 }
 function isUsuarioLogado(){
     if(localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== ''

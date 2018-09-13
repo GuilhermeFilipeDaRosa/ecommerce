@@ -5,6 +5,7 @@
  */
 package web;
 
+import beans.CarrinhoItensBeanRemote;
 import exceptions.AppException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import beans.ClienteBeanRemote;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cliente;
@@ -33,6 +35,8 @@ public class LoginServlet extends HttpServlet {
     
     @EJB
     private ClienteBeanRemote bean;
+    @EJB
+    private CarrinhoItensBeanRemote beanCarrinhoItens;
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -42,7 +46,7 @@ public class LoginServlet extends HttpServlet {
         Cliente cliente = new Cliente();
         
         String email, senha, content;
-        boolean retorno = false;
+        int qtde = 0;
 
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
@@ -57,15 +61,18 @@ public class LoginServlet extends HttpServlet {
         
         try {
             cliente = bean.logarCliente(email, senha);
+            qtde = beanCarrinhoItens.retornaQtdeCarrinho(cliente.getCcliente());
         } catch (Exception ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        JsonObject json = Json.createObjectBuilder()
+        JsonObject json = null;
+        json = Json.createObjectBuilder()
                 .add("logou", cliente.isLogado())
                 .add("usuario", cliente.getNome())
                 .add("codCliente", cliente.getCcliente())
                 .add("session", request.getSession().getId())
+                .add("qtdeCarrinho", qtde)
                 .build();
 
         saida.write(json.toString());

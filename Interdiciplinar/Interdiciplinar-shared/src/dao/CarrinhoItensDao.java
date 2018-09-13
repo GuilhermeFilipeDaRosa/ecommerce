@@ -53,7 +53,21 @@ public class CarrinhoItensDao {
         }
         return false;
     }
-    
+
+    public int retornaQtdeCarrinho(int ccliente) throws SQLException {
+        String SQL = " SELECT COUNT(*) AS QTDE"
+                + " FROM CARRINHOITENS"
+                + " INNER JOIN CARRINHO ON (CARRINHO.CCARRINHO = CARRINHOITENS.CCARRINHO)"
+                + " WHERE CARRINHO.CCLIENTE = ?";
+        PreparedStatement p = connection.prepareStatement(SQL);
+        p.setInt(1, ccliente);
+        ResultSet rs = p.executeQuery();
+        if(rs.next()) {
+            return rs.getInt("QTDE");
+        }
+        return 0;
+    }
+
     public List<Produto> getListaItensCarrinho(int ccarrinho) throws Exception {
         List<Produto> list = new ArrayList<>();
         Produto objeto;
@@ -68,7 +82,7 @@ public class CarrinhoItensDao {
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
                 objeto = new Produto();
-                
+
                 objeto.setCproduto(rs.getInt("CPRODUTO"));
                 objeto.setCcategoria(rs.getInt("CCATEGORIA"));
                 objeto.setCmarca(rs.getInt("CMARCA"));
@@ -77,7 +91,7 @@ public class CarrinhoItensDao {
                 objeto.setQtde(rs.getInt("QTDE"));
                 objeto.setImagem(rs.getString("IMAGEM"));
                 objeto.setDataCadastro("DATA_CADASTRO");
- 
+
                 list.add(objeto);
             }
             rs.close();
@@ -85,7 +99,7 @@ public class CarrinhoItensDao {
         } catch (SQLException ex) {
             throw new Exception(ex);
         }
-        
+
         return list;
     }
 }

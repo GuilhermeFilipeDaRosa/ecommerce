@@ -18,4 +18,5 @@ import model.Produto;
 public interface CarrinhoItensBeanRemote {
     public String salvaProdutoCarrinho(int ccarinho, int cproduto) throws SQLException;
     public List<Produto> getListaItensCarrinho(int ccarrinho) throws Exception;
+    public int retornaQtdeCarrinho(int ccliente) throws SQLException;
 }
