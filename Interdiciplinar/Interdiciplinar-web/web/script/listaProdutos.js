@@ -70,6 +70,7 @@ function montaGrid(dados) {
     if (localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== '') {
         document.querySelector(".barra-topo").style.display = "none";
         document.querySelector(".barra-usuario").style.display = "inline-block";
+        //document.querySelector(".areaAdm").style.display = "";
         document.querySelector("#sair").addEventListener("click", sair);
         document.querySelector("#usuario").innerText = "Olá, " + localStorage.getItem("usuario") + "!";
         document.querySelector(".qtd-cart").innerText = localStorage.getItem("qtdeCarrinho");
@@ -140,6 +141,7 @@ function pesquisaProduto() {
 function sair() {
     document.querySelector(".barra-topo").style.display = "inline-block";
     document.querySelector(".barra-usuario").style.display = "none";
+    document.querySelector(".qtd-cart").innerText = 0;
     limpaUsuarioLocalStorage();
     init();
 }

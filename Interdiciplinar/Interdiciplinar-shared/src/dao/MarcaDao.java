@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.Marca;
+import model.Produto;
 import util.ConnectionUtil;
 
 /**
@@ -74,6 +77,31 @@ public class MarcaDao {
             return true;
         }
         return false;
+    }
+    
+    public List<Marca> getLista() throws Exception {
+        List<Marca> list = new ArrayList<>();
+        Marca objeto;
+        String SQL = " SELECT FIRST 12 * "
+                + " FROM PRODUTO "
+                + " WHERE PRODUTO.QTDE > 0"
+                + " ORDER BY CPRODUTO DESC";
+        try {
+            PreparedStatement p = connection.prepareStatement(SQL);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                objeto = new Marca();
+                objeto.setCmarca(rs.getInt("CMARCA"));
+                objeto.setDescricao(rs.getString("DESCRICAO"));
+
+                list.add(objeto);
+            }
+            rs.close();
+            p.close();
+        } catch (SQLException ex) {
+            throw new Exception(ex);
+        }
+        return list;
     }
 }
 

@@ -1,7 +1,16 @@
+var URL = "http://localhost:8080/interdiciplinar-web/marcaServlet";
 function init() {
     document.querySelector("#salvar").addEventListener("click", cadastraMarca);
+    requisicaoHttp("GET", URL, true, montaTabela);
 }
-var URL = "http://localhost:8080/interdiciplinar-web/marcaServlet";
+function montaTabela(data){
+    var dados = JSON.parse(data),
+            tr,
+            td;
+    for(var a = 0; a < dados.length; a++){
+        
+    }
+}
 function cadastraMarca() {
     var form = document.querySelector("#form"),
             formData = {};
@@ -15,6 +24,7 @@ function cadastraMarca() {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(JSON.stringify(formData));
 }
+
 function parseJson(jsonData) {
     var obj = JSON.parse(jsonData),
         inputs;

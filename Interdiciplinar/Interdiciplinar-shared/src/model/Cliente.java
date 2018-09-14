@@ -27,8 +27,17 @@ public class Cliente implements Serializable{
     private String telefone;
     private String email;
     private String senha;
+    private String tipo;
     private boolean logado;
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public boolean isLogado() {
         return logado;
     }

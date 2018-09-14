@@ -5,7 +5,9 @@
  */
 package beans;
 
+import java.util.List;
 import javax.ejb.Remote;
+import model.Marca;
 
 /**
  *
@@ -14,4 +16,5 @@ import javax.ejb.Remote;
 @Remote
 public interface MarcaBeanRemote {
     public String cadastraMarca(String descricao);
+    public List<Marca> getLista() throws Exception;
 }

@@ -72,6 +72,7 @@ public class LoginServlet extends HttpServlet {
                 .add("usuario", cliente.getNome())
                 .add("codCliente", cliente.getCcliente())
                 .add("session", request.getSession().getId())
+                .add("tipo", cliente.getTipo())
                 .add("qtdeCarrinho", qtde)
                 .build();
 

@@ -11,8 +11,14 @@
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/nbproject/build-impl.xml</file>
         </group>
         <group>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/carrinho.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/CompraServlet.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/admCliente.html</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/requisicaoHttp.js</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/marca.js</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/admMarca.html</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/MarcaServlet.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/principalCliente.html</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/produto.js</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/cliente.js</file>
         </group>
     </open-files>
 </project-private>

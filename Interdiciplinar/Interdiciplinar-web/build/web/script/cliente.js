@@ -11,6 +11,14 @@ function cadastraCliente() {
         alert("As senhas não estão iguais", "Aviso");
         return;
     }
+    
+    if(form.nome.value === '' || !data || form.cpf.value === '' || form.cep.value === '' || form.endereco.value === ''
+            || form.numero.value === '' || form.bairro.value === '' || form.estado.value === '' || form.estado.value === ''
+            || form.cidade.value === '' || form.fone.value === '' || form.email.value === ''){
+        alert('Você não preencheu todas as informações');
+        return;
+    }
+    
     formData["nome"] = form.nome.value;
     formData["data_nascimento"] = data[2] + '/' + data[1] + '/' + data[0];
     formData["cpf"] = form.cpf.value;

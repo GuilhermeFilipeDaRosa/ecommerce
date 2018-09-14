@@ -29,6 +29,7 @@ function parseJson(jsonData) {
         localStorage.setItem("cod",obj.codCliente);
         localStorage.setItem("session", obj.session);
         localStorage.setItem("qtdeCarrinho", obj.qtdeCarrinho);
+        localStorage.setItem("tipoUsuario", obj.tipo);
         window.location.href = "../index.html";
     } else {
         localStorage.setItem("usuario", "");

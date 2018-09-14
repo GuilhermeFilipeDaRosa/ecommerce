@@ -21,6 +21,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import beans.MarcaBeanRemote;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Marca;
+import model.Produto;
 
 /**
  *
@@ -57,5 +61,40 @@ public class MarcaServlet extends HttpServlet {
                 .build();
 
         saida.write(json.toString());
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        PrintWriter saida = response.getWriter();
+        JsonObject retorno = null, json;
+        String dados = null;
+
+        try {
+            for(Marca marca : bean.getLista()){
+                if(dados != null){
+                    dados += ",";
+                }
+                json = Json.createObjectBuilder()
+                        .add("codigo", marca.getCmarca())
+                        .add("cmarca", marca.getDescricao()).build();
+                if(dados != null){
+                    dados += json.toString();
+                }else{
+                    dados = json.toString();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            retorno = Json.createObjectBuilder()
+                    .add("produtos", "["+dados+"]").build();
+        } catch (Exception ex) {
+            Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        saida.write(retorno.toString());
     }
 }

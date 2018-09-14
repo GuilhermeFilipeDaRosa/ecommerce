@@ -103,6 +103,7 @@ public class ClienteDao {
                 cliente.setBairro(rs.getString("BAIRRO"));
                 cliente.setEmail(rs.getString("EMAIL"));
                 cliente.setSenha(rs.getString("SENHA"));
+                cliente.setTipo(rs.getString("TIPO"));
                 cliente.setLogado(true);
                 return cliente;
             }

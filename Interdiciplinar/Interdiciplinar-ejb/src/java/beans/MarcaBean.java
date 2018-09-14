@@ -6,6 +6,7 @@
 package beans;
 
 import dao.MarcaDao;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -41,14 +42,6 @@ public class MarcaBean implements MarcaBeanRemote{
         }
         return false;
     }
-//    public boolean updateMarca(Marca marca){
-//        try{
-//            return marcaDao.update(marca);
-//        }catch(Exception ex){
-//            Logger.getLogger(MarcaBean.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return false;
-//    }
     public Marca fiendById(int cmarca){
         try{
             return marcaDao.fiendById(cmarca);
@@ -56,5 +49,10 @@ public class MarcaBean implements MarcaBeanRemote{
             Logger.getLogger(MarcaBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    @Override
+    public List<Marca> getLista() throws Exception {
+        return marcaDao.getLista();
     }
 }
