@@ -52,14 +52,15 @@ public class CompraDao {
         }
         return 0;
     }
-    public List<Compra> retornaComprasPendentes() throws Exception {
+    public List<Compra> retornaCompras(String condicao) throws Exception {
         List<Compra> list = new ArrayList<>();
         Compra objeto;
         String SQL = " SELECT * "
                 + " FROM COMPRA "
-                + " WHERE COMPRA.STATUS = 'P'";
+                + " WHERE COMPRA.STATUS = '?'";
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
+            p.setString(1, condicao);
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
                 objeto = new Compra();

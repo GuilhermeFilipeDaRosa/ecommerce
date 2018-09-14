@@ -19,6 +19,6 @@ import model.Compra;
 public interface CompraBeanRemote{
     public boolean efetuaCompra(int ccliente) throws SQLException, ParseException;
     public int retornaCCompra(int ccliente) throws SQLException;
-    public List<Compra> retornaComprasPendentes() throws Exception;
+    public List<Compra> retornaCompras(String condicao) throws Exception;
     public List<Compra> retornaComprasCliente(int ccliente) throws Exception;
 }

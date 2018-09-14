@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package web;
 
 import beans.CompraBeanRemote;
@@ -89,10 +84,20 @@ public class CompraServlet extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
         JsonObject retorno = null, json;
-        String dados = null;
+        String dados = null, content, condicao;
+        
+        BufferedReader leitor = new BufferedReader(
+                new InputStreamReader(request.getInputStream(), "UTF-8"));
+
+        content = leitor.lines().collect(Collectors.joining());
+
+        JsonReader reader = Json.createReader(new StringReader(content));
+        JsonObject dado = reader.readObject();
+
+        condicao = dado.getJsonString("ccliente").getString();
 
         try {
-            for (Compra compra : beanCompra.retornaComprasPendentes()) {
+            for (Compra compra : beanCompra.retornaCompras(condicao)) {
                 if (dados != null) {
                     dados += ",";
                 }

@@ -1,5 +1,5 @@
 function init() {
-    document.querySelector("#enviar").addEventListener("click", cadastraMarca);
+    document.querySelector("#salvar").addEventListener("click", cadastraMarca);
 }
 var URL = "http://localhost:8080/interdiciplinar-web/marcaServlet";
 function cadastraMarca() {

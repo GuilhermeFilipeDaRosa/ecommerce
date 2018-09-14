@@ -47,7 +47,7 @@ public class ProdutoServlet extends HttpServlet {
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
         
         content = leitor.lines().collect(Collectors.joining());
-
+        
         JsonReader reader = Json.createReader(new StringReader(content));
         JsonObject form = reader.readObject();
 

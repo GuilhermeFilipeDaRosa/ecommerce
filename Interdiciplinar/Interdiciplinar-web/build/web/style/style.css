@@ -24,6 +24,7 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
     line-height: 2.1875rem;
     width: 100%;
     min-width: 12em;
+    display: block;
 }
 .fa-user, .fa-address-card{
     color: #fff;
@@ -151,7 +152,7 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
 .dv-carrinho-produto-nome{
     float: left;
     width: 50%;
-    height: 5.9em;
+    height: 8.7em;
     font-size: 1em;
     line-height: 2em;
     text-align: center;
@@ -166,7 +167,7 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
 .img-carrinho-produto{
     float: left;
     width: 7.9em;
-    height: 5.9em;
+    height: 8.74em;
 }
 .dv-head-img-carrinho{
     width: 6.6em;
@@ -179,9 +180,10 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
     float: left;
     width: 15%;
     font-size: 1.2em;
-    height: 5em;
-    line-height: 5em;
+    height: 7.3em;
+    line-height: 8em;
     border-left: .05em solid #000;
+    border-right: .05em solid #000;
     text-align: center;
     color: #03f;
 }.dv-head-preco-carrinho{
@@ -192,40 +194,30 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
 .dv-head-qtd-carrinho,
 .dv-carrinho-produto-qtd{
     float: left;
-    width: 10%;
+    width: 14.9%;
     font-size: 1.2em;
-    height: 5em;
+    height: 1.5em;
     line-height: 5em;
-    border-left: .05em solid #000;
     text-align: center;
+    border-bottom: .04em solid #000;
     color: #03f;
+}
+.dv-carrinho-produto-btn-comprar,
+.dv-carrinho-produto-qtd-disponivel{
+    float: left;
+    width: 6.2em;
+    text-align: center;
+    color: #444;
+}
+.dv-carrinho-produto-btn-comprar{
+    margin: 2.5% .45%;
+    cursor: pointer;
+    height: 3em;
 }
 .dv-head-qtd-carrinho{
     color: #fff;
     height: 2em;
     line-height: 2em;
-}
-.dv-carrinho-produto-qtd-rmv,
-.dv-carrinho-produto-qtd-add{
-    background-color: #444;
-    min-width: 1.5em;
-    min-height: 1.5em;
-    line-height: 1.5em;
-    float: right;
-    border-radius: 2em;
-    margin: 2% .5% 0;
-    font-size: 1.2em;
-    color: #fff;
-    cursor: pointer;
-}
-.dv-carrinho-produto-qtd-rmv:hover{
-    background-color: #447;
-}
-.dv-carrinho-produto-qtd-add{
-    background-color: #0f8;
-}
-.dv-carrinho-produto-qtd-add:hover{
-    background-color: #0f0;
 }
 .barra-menu{
     clear: both;
@@ -283,7 +275,6 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
     background-color: #444;
     width: 100%;
     min-height: 40em;
-    display: inline-block;
 }
 .conteudo-banners {
     text-align: center;
@@ -420,14 +411,18 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
     position: relative;
     left: 30em;
 }
-.principalLogin{
+.principalLogin,
+.admLogin{
     border: none;
     border-radius: 1em 0;
     width: 15em;
     height: 20em;
     margin: 2em auto;
     padding: 1em;
-    background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+    background: rgba(0,0,0,.2);
+}
+.admLogin{
+    margin: 6em auto;
 }
 #email, #senha{
     width: 15em;
@@ -536,7 +531,7 @@ vertical-nav ul li ul {
     transition: .2s;
 }
 .forms-adm-direita{
-    float: left;
+    float: right;
     width: 80.9%;
     background-color: #fcf9f9;
 }
@@ -548,6 +543,7 @@ vertical-nav ul li ul {
     border: .1em solid black;
     border-radius: .5em;
     padding: .5em;
+    line-height: 2em;
 }
 .dv-campo > input:-moz-read-only {
     background: #F3F3F3;

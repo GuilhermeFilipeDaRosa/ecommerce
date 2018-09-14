@@ -1,5 +1,5 @@
 function init() {
-    document.querySelector("#enviar").addEventListener("click", cadastraCategoria);
+    document.querySelector("#salvar").addEventListener("click", cadastraCategoria);
 }
 var URL = "http://localhost:8080/interdiciplinar-web/categoriaServlet";
 function cadastraCategoria() {

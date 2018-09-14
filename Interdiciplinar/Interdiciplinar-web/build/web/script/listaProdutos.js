@@ -17,7 +17,7 @@ function montaGrid(dados) {
         document.querySelector(".qtd-cart").innerText = localStorage.getItem("qtdeCarrinho");
     }
 
-    for (i = 0, qtde = produtos.length; i < qtde; i++) {
+    for (var i = 0, qtde = produtos.length; i < qtde; i++) {
         //cria uma div
         dvProduto = document.createElement('DIV');
         //define a classe para a div
@@ -74,17 +74,12 @@ function montaGrid(dados) {
         document.querySelector(".barra-usuario").style.display = "inline-block";
         document.querySelector("#sair").addEventListener("click", sair);
         document.querySelector("#usuario").innerText = "Olá, " + localStorage.getItem("usuario") + "!";
-        qtdeCarrinho(localStorage.getItem("usuario"));
+        document.querySelector(".qtd-cart").innerText = localStorage.getItem("qtdeCarrinho");
     }
     document.querySelector(".fa-shopping-cart").addEventListener("click", abreCarrinho);
     document.querySelector("#lupa").addEventListener("click", pesquisaProduto);
     document.querySelector(".campo-busca").addEventListener("keydown", pesquisaProdutoEnter);
     classificacao();
-}
-function qtdeCarrinho(cusuario) {
-    var URL = "http://localhost:8080/interdiciplinar-web/produtoServlet";
-
-    requisicaoHttp("GET", URL, true, montaGrid);
 }
 function classificacao() {
     addEvento(document.querySelector("#categoria1"));
@@ -172,12 +167,12 @@ function adicionaCarrinho(e) {
         alert("Você precisa estar logado para adicionar um item ao carrinho.");
     }
 }
-;
+
 function parseJson(response) {
     var obj = JSON.parse(response);
     alert(obj.mensagem);
 }
-;
+
 function abreCarrinho() {
     if (isUsuarioLogado()) {
         window.location.href = "pags/principalCarrinho.html";

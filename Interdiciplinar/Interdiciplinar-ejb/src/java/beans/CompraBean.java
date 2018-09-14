@@ -35,8 +35,8 @@ public class CompraBean implements CompraBeanRemote{
         return compraDao.retornaCCompra(ccliente);
     }
     @Override
-    public List<Compra> retornaComprasPendentes() throws Exception {
-        return compraDao.retornaComprasPendentes();
+    public List<Compra> retornaCompras(String condicao) throws Exception {
+        return compraDao.retornaCompras(condicao);
     }
     
     @Override
