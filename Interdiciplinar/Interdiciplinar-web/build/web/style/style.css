@@ -580,4 +580,13 @@ th {
 }
 .excluir{
     font-size: 1em;
+    float: right;
+    margin-top: 4.23em;
+    border: 1px solid black;
+    padding: 0.2em;
+    border-right: 0;
+    border-bottom: 0;
+}
+.excluir:hover{
+    cursor:pointer;
 }

@@ -41,6 +41,10 @@
         <servlet-name>ClassificacaoServlet</servlet-name>
         <servlet-class>web.ClassificacaoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExcluirItemCarrinhoServlet</servlet-name>
+        <servlet-class>web.ExcluirItemCarrinhoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ClienteServlet</servlet-name>
         <url-pattern>/clienteServlet</url-pattern>
@@ -80,6 +84,10 @@
     <servlet-mapping>
         <servlet-name>ClassificacaoServlet</servlet-name>
         <url-pattern>/classificacaoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirItemCarrinhoServlet</servlet-name>
+        <url-pattern>/excluirItemCarrinhoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -38,6 +38,15 @@ public class CarrinhoItensDao {
         }
         return "Produto já foi adicionado ao carrinho.";
     }
+    
+    public String excluirCarrinhoItem(int ccarrinho, int cproduto) throws SQLException{
+        String SQL = "DELETE FROM CARRINHOITENS WHERE CCARRINHO = ? AND CPRODUTO = ?";
+        PreparedStatement p = connection.prepareStatement(SQL);
+        p.setInt(1, ccarrinho);
+        p.setInt(2, cproduto);
+        p.execute();
+        return "Item deletado com sucesso.";
+    }
 
     public boolean isProdInCarrinho(int ccarrinho, int cproduto) throws SQLException {
         String SQL = "SELECT * "

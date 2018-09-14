@@ -38,4 +38,9 @@ public class CarrinhoItensBean implements CarrinhoItensBeanRemote{
     public int retornaQtdeCarrinho(int ccliente) throws SQLException {
         return carrinhoItensDao.retornaQtdeCarrinho(ccliente);
     }
+    
+    @Override
+    public String excluirCarrinhoItem(int ccarrinho, int cproduto) throws SQLException{
+        return carrinhoItensDao.excluirCarrinhoItem(ccarrinho, cproduto);
+    }
 }

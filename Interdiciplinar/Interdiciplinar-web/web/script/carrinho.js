@@ -20,14 +20,9 @@ function montaGrid(dados) {
     imgProduto.textContent = "Imagem";
     dvProduto.appendChild(imgProduto);
 
-    dvExcluir = document.createElement('DIV');
-    dvExcluir.className = 'excluir';
-    dvExcluir.textContent = 'X';
-
     dvProdutoNome = document.createElement('DIV');
     dvProdutoNome.className = 'dv-head-descricao-carrinho';
     dvProdutoNome.textContent = "Descrição";
-    dvProdutoNome.appendChild(dvExcluir);
     dvProduto.appendChild(dvProdutoNome);
 
     dvProdutoPreco = document.createElement('DIV');
@@ -39,26 +34,31 @@ function montaGrid(dados) {
     dvProdutoQtd.className = 'dv-head-qtd-carrinho';
     dvProdutoQtd.textContent = "Quantidade";
     dvProduto.appendChild(dvProdutoQtd);
-    
+
     dvCatalogo.appendChild(dvProduto);
 
     document.querySelector(".qtd-cart").innerText = produtos.length;
-    
+
     for (var i = 0, qtde = produtos.length; i < qtde; i++) {
 
         dvProduto = document.createElement('DIV');
         dvProduto.className = 'dv-carrinho-produto';
         dvProduto.id = produtos[i].codigo;
-        
+
         imgProduto = document.createElement('IMG');
         imgProduto.className = 'img-carrinho-produto';
         imgProduto.src = produtos[i].imagem;
         dvProduto.appendChild(imgProduto);
 
-        
+        dvExcluir = document.createElement('DIV');
+        dvExcluir.className = 'excluir';
+        dvExcluir.textContent = 'X - Excluir';
+        dvExcluir.addEventListener('click', excluir);
+
         dvProdutoNome = document.createElement('DIV');
         dvProdutoNome.className = 'dv-carrinho-produto-nome';
         dvProdutoNome.textContent = produtos[i].nome;
+        dvProdutoNome.appendChild(dvExcluir);
         dvProduto.appendChild(dvProdutoNome);
 
         dvProdutoPreco = document.createElement('DIV');
@@ -73,7 +73,7 @@ function montaGrid(dados) {
 
         dvProdutoQtd = document.createElement('DIV');
         dvProdutoQtd.className = 'dv-carrinho-produto-qtd-disponivel';
-        dvProdutoQtd.textContent = produtos[i].qtde+" Disponivel";
+        dvProdutoQtd.textContent = produtos[i].qtde + " Disponivel";
         dvProduto.appendChild(dvProdutoQtd);
 
         dvProdutoQtd = document.createElement('BUTTON');
@@ -120,6 +120,13 @@ function sair() {
     document.querySelector(".barra-usuario").style.display = "none";
     limpaUsuarioLocalStorage();
     window.location.href = "../index.html";
+}
+function excluir(e){
+    var URL = "http://localhost:8080/interdiciplinar-web/excluirItemCarrinhoServlet",
+            dados = {};
+    dados["ccliente"] = Number(localStorage.getItem("cod"));
+    dados["cproduto"] = Number(e.target.parentNode.parentNode.id);
+    requisicaoPost(URL, dados, resultCompra);
 }
 init();
 
