@@ -34,11 +34,12 @@ function cadastraCliente() {
 }
 function parseJson(jsonData) {
     var obj = JSON.parse(jsonData),
-        inputs;
-        inputs = document.getElementsByTagName("input");
-        for(var i = 0; i < inputs.length; i++){
+            inputs;
+    inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
             inputs[i].value = "";
         }
-        alert(obj.mensagem);
+    alert(obj.mensagem);
+    window.location.href = "../index.html";
 }
 init();

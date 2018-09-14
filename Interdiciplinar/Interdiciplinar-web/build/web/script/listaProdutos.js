@@ -169,13 +169,17 @@ function adicionaCarrinho(e) {
 }
 
 function parseJson(response) {
-    var obj = JSON.parse(response);
+    var obj = JSON.parse(response), qtde = document.querySelector('.qtd-cart');
     alert(obj.mensagem);
+    localStorage.setItem("qtdeCarrinho", parseInt(qtde.innerText) + 1);
+    window.location.href = "index.html";
 }
 
 function abreCarrinho() {
     if (isUsuarioLogado()) {
-        window.location.href = "pags/principalCarrinho.html";
+        if (document.querySelector('.qtd-cart').innerText !== "0") {
+            window.location.href = "pags/principalCarrinho.html";
+        }
     } else {
         alert("você precisa estar logado.");
     }

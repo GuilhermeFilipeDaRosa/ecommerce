@@ -47,7 +47,7 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
 #sair{
     clear: both;
     position: relative;
-    left: 82%;
+    left: 80%;
     font-size: 1em;
     color: #fff;
     padding: 1em .7em 1em;
@@ -194,13 +194,14 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
 .dv-head-qtd-carrinho,
 .dv-carrinho-produto-qtd{
     float: left;
-    width: 14.9%;
+    width: 13.9%;
     font-size: 1.2em;
     height: 1.5em;
     line-height: 5em;
     text-align: center;
     border-bottom: .04em solid #000;
     color: #03f;
+    margin: .2em;
 }
 .dv-carrinho-produto-btn-comprar,
 .dv-carrinho-produto-qtd-disponivel{
@@ -302,7 +303,7 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
     background: #fefefe;
     border-radius: 1em;
     width: 16em;
-    margin: 0.5em auto;
+    margin: 1.1em -20.9em .1em .1em;
     padding: .6em;
     box-shadow: .1em .1em .4em 0 #888888;
 }
@@ -576,4 +577,7 @@ th {
     height: 16.2em;
     overflow: hidden;
     width: 14em;
+}
+.excluir{
+    font-size: 1em;
 }

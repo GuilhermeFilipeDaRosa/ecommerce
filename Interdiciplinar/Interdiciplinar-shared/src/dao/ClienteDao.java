@@ -48,7 +48,7 @@ public class ClienteDao {
                     String cidade, String telefone, String email, String senha) throws Exception {
 
         String SQL = "INSERT INTO CLIENTE(NOME, DATA_NASCIMENTO, CPF, CEP, ENDERECO, NUMERO, COMPLEMENTO,"
-                + " BAIRRO, ESTADO, CIDADE, TELEFONE, EMAIL, SENHA) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " BAIRRO, ESTADO, CIDADE, TELEFONE, EMAIL, SENHA, TIPO) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         if (verificaUsuario(cpf)) {
             try {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -67,6 +67,7 @@ public class ClienteDao {
                 p.setString(11, telefone);
                 p.setString(12, email);
                 p.setString(13, senha);
+                p.setString(14, "C");
                 p.execute();
             } catch (SQLException ex) {
                 throw new Exception(ex);

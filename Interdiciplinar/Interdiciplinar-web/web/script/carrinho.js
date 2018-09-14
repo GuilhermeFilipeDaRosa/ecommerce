@@ -8,7 +8,7 @@ function init() {
 }
 function montaGrid(dados) {
     var dvCatalogo = document.querySelector('#itens'),
-            i, qtde, dvProduto, dvProdutoNome, imgProduto, dvProdutoPreco, dvProdutoQtd, btnAdd,
+            i, qtde, dvProduto, dvProdutoNome, imgProduto, dvProdutoPreco, dvProdutoQtd, dvExcluir,
             produtos = JSON.parse(JSON.parse(dados).produtos);
 
 
@@ -20,9 +20,14 @@ function montaGrid(dados) {
     imgProduto.textContent = "Imagem";
     dvProduto.appendChild(imgProduto);
 
+    dvExcluir = document.createElement('DIV');
+    dvExcluir.className = 'excluir';
+    dvExcluir.textContent = 'X';
+
     dvProdutoNome = document.createElement('DIV');
     dvProdutoNome.className = 'dv-head-descricao-carrinho';
     dvProdutoNome.textContent = "Descrição";
+    dvProdutoNome.appendChild(dvExcluir);
     dvProduto.appendChild(dvProdutoNome);
 
     dvProdutoPreco = document.createElement('DIV');
@@ -50,6 +55,7 @@ function montaGrid(dados) {
         imgProduto.src = produtos[i].imagem;
         dvProduto.appendChild(imgProduto);
 
+        
         dvProdutoNome = document.createElement('DIV');
         dvProdutoNome.className = 'dv-carrinho-produto-nome';
         dvProdutoNome.textContent = produtos[i].nome;
@@ -107,6 +113,7 @@ function efetuaCompra(e) {
 function resultCompra(data) {
     var resposta = JSON.parse(data);
     alert(resposta.mensagem);
+    window.location.href = "principalCarrinho.html";
 }
 function sair() {
     document.querySelector(".barra-topo").style.display = "inline-block";
