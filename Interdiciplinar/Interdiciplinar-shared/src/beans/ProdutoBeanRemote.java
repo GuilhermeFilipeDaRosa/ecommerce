@@ -20,7 +20,6 @@ public interface ProdutoBeanRemote {
             String imagem);
     public List<Produto> getListaProdutos() throws Exception;
     public List<Produto> getListaSearch(String pesquisa) throws Exception;
-    public double retornaValorUnitario(int cproduto) throws SQLException;
     public List<Produto> getListaClassificacao(int ccategoria, String descricao) throws Exception;
     public Produto retornaDadosProduto(int cproduto) throws SQLException, Exception;
 }

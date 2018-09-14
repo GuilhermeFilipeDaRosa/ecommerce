@@ -25,4 +25,9 @@ public class CompraItensBean implements CompraItensBeanRemote{
     public String salvaItensCompra(int cproduto, int ccompra, int qtde, double valorUnitario) throws SQLException {
         return compraItensDao.salvaItensCompra(cproduto, ccompra, qtde, valorUnitario);
     }
+    
+    @Override
+    public void atualizaValorProduto(int qtde, int cproduto) throws SQLException{
+         compraItensDao.atualizaValorProduto(qtde, cproduto);
+    }
 }

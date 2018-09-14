@@ -39,7 +39,7 @@ public class CompraServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
-        JsonObject json;
+        JsonObject json = null;
         String retorno = "Não foi possivel efetuar a compra", content;
         Produto produto = new Produto();
         int ccliente, cproduto, qtde;
@@ -58,9 +58,10 @@ public class CompraServlet extends HttpServlet {
 
         try {
             produto = beanProduto.retornaDadosProduto(cproduto);
-            if (produto.getQtde() < qtde) {
+            if (produto.getQtde() >= qtde) {
                 if (beanCompra.efetuaCompra(ccliente)) {
-                    retorno = beanCompraItens.salvaItensCompra(cproduto, beanCompra.retornaCCompra(ccliente), qtde, beanProduto.retornaValorUnitario(cproduto));
+                    retorno = beanCompraItens.salvaItensCompra(cproduto, beanCompra.retornaCCompra(ccliente), qtde, produto.getPreco_unitario());
+                    beanCompraItens.atualizaValorProduto(produto.getQtde() - qtde, cproduto);
                 }
             }else{
                retorno = "O produto não possui quantidade suficiente.";
@@ -76,7 +77,7 @@ public class CompraServlet extends HttpServlet {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        saida.write(retorno.toString());
+        saida.write(json.toString());
     }
 
     @Override

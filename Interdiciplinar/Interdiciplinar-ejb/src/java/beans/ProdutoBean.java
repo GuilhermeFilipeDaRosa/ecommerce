@@ -48,11 +48,6 @@ public class ProdutoBean implements ProdutoBeanRemote {
     }
     
     @Override
-    public double retornaValorUnitario(int cproduto) throws SQLException{
-        return produtoDao.retornaValorUnitario(cproduto);
-    }
-    
-    @Override
     public List<Produto> getListaClassificacao(int ccategoria, String descricao) throws Exception{
         return produtoDao.getListaClassificacao(ccategoria, descricao);
     }

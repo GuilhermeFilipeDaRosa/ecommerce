@@ -96,6 +96,7 @@ public class ProdutoDao {
         String SQL = "SELECT * FROM PRODUTO WHERE CPRODUTO = ?";
         try {
             PreparedStatement p = connection.prepareStatement(SQL);
+            p.setInt(1, cproduto);
             ResultSet rs = p.executeQuery();
             if(rs.next()) {
                 objeto = new Produto();
@@ -167,18 +168,5 @@ public class ProdutoDao {
             throw new Exception(ex);
         }
         return "Produto cadastrado com sucesso.";
-    }
-    
-    public double retornaValorUnitario(int cproduto) throws SQLException{
-        String sql = "SELECT PRODUTO.PRECO_UNITARIO"
-                + " FROM PRODUTO"
-                + " WHERE PRODUTO.CPRODUTO = ?";
-        PreparedStatement p = connection.prepareStatement(sql);
-        p.setInt(1, cproduto);
-        ResultSet rs = p.executeQuery();
-        if (rs.next()) {
-            return rs.getDouble("PRECO_UNITARIO");
-        }
-        return 0;
     }
 }

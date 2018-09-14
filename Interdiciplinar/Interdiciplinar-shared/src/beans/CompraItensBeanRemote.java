@@ -15,4 +15,5 @@ import javax.ejb.Remote;
 @Remote
 public interface CompraItensBeanRemote {
     public String salvaItensCompra(int cproduto, int ccompra, int qtde, double valorUnitario) throws SQLException;
+    public void atualizaValorProduto(int qtde, int cproduto) throws SQLException;
 }

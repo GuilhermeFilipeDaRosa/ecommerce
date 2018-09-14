@@ -93,23 +93,20 @@ function efetuaCompra(e) {
     if (document.querySelector('.dv-carrinho-produto-qtd').value) {
         if (document.querySelector('.dv-carrinho-produto-qtd').value
                 <= document.querySelector('.dv-carrinho-produto-qtd-disponivel').innerText.split(' ')[0]) {
-
+            dados["ccliente"] = Number(localStorage.getItem("cod"));
+            dados["cproduto"] = Number(e.target.parentNode.id);
+            dados["qtde"] = Number(document.querySelector('.dv-carrinho-produto-qtd').value);
+            requisicaoPost(URL, dados, resultCompra);
         } else {
             alert('Saldo indisponivel!');
         }
     } else {
         alert('Informe a quantidade que deseja comprar!');
     }
-
-//    if (qtde !== null && qtde > 0) {
-//        dados["ccliente"] = Number(localStorage.getItem("cod"));
-//        dados["cproduto"] = Number(e.target.parentNode.id);
-//        dados["qtde"] = Number(qtde);
-//        requisicaoPost(URL, dados, resultCompra);
-//    }
 }
 function resultCompra(data) {
     var resposta = JSON.parse(data);
+    alert(resposta.mensagem);
 }
 function sair() {
     document.querySelector(".barra-topo").style.display = "inline-block";

@@ -41,9 +41,9 @@ public class CompraDao {
     }
     public int retornaCCompra(int ccliente) throws SQLException{
         String SQL = "SELECT FIRST 1 COMPRA.CCOMPRA"
-                + "FROM COMPRA"
-                + "WHERE COMPRA.CCLIENTE = ?"
-                + "ORDER BY COMPRA.CCOMPRA DESC";
+                + " FROM COMPRA"
+                + " WHERE COMPRA.CCLIENTE = ?"
+                + " ORDER BY COMPRA.CCOMPRA DESC";
         PreparedStatement p = connection.prepareStatement(SQL);
         p.setInt(1, ccliente);
         ResultSet rs = p.executeQuery();
