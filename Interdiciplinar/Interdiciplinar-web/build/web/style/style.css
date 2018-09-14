@@ -124,7 +124,16 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
     margin-left: 8.2%;
     margin-top: 4%;
 }
-.carrinho:hover{
+.carrinho2{
+    color: #37f;
+    font-size: 2.5em;
+    cursor: pointer;
+    transition: .3s;
+    margin-left: 8.2%;
+    margin-top: 4%;
+    float: right;
+}
+.carrinho:hover, .carrinho2:hover{
     text-shadow: .04em .03em .01em #fff;
 }
 #cart-total{
@@ -592,10 +601,15 @@ th {
 }
 .voltar{
     background-color: blue;
-    width: 17%;
+    width: 19%;
     margin-left: 7em;
     float: left;
-    margin-top: 7em;
+    margin-top: 6em;
+    font-weight: bold;
+    height: 2em;
+    border-radius: 1em;
+    text-align: center;
+    line-height: 2em;
 }
 .voltar:hover{
     background-color: gray;

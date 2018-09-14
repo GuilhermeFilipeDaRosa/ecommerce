@@ -13,8 +13,6 @@ function montaGrid(dados) {
 
     if (localStorage.getItem("session") === null || localStorage.getItem("session") !== produtos[0].session) {
         limpaUsuarioLocalStorage();
-    } else {
-        document.querySelector(".qtd-cart").innerText = localStorage.getItem("qtdeCarrinho");
     }
 
     for (var i = 0, qtde = produtos.length; i < qtde; i++) {

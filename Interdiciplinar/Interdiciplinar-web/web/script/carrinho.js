@@ -38,6 +38,7 @@ function montaGrid(dados) {
     dvCatalogo.appendChild(dvProduto);
 
     document.querySelector(".qtd-cart").innerText = produtos.length;
+    localStorage.setItem("qtdeCarrinho", produtos.length);
 
     for (var i = 0, qtde = produtos.length; i < qtde; i++) {
 
