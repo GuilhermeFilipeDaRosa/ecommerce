@@ -6,7 +6,9 @@
 package beans;
 
 import java.sql.SQLException;
+import java.util.List;
 import javax.ejb.Remote;
+import model.CompraItens;
 
 /**
  *
@@ -16,4 +18,5 @@ import javax.ejb.Remote;
 public interface CompraItensBeanRemote {
     public String salvaItensCompra(int cproduto, int ccompra, int qtde, double valorUnitario) throws SQLException;
     public void atualizaValorProduto(int qtde, int cproduto) throws SQLException;
+    public List<CompraItens> retornaCompras(String condicao) throws Exception;
 }

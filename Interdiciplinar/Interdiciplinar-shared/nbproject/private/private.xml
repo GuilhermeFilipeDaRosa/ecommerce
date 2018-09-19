@@ -8,8 +8,10 @@
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-shared/src/beans/CadastroClienteBeanRemote.java</file>
         </group>
         <group>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/model/Cliente.java</file>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/MarcaDao.java</file>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/beans/MarcaBeanRemote.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-shared/src/dao/ClienteDao.java</file>
         </group>
     </open-files>
 </project-private>

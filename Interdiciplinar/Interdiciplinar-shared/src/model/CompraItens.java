@@ -13,11 +13,40 @@ import java.io.Serializable;
  */
 public class CompraItens implements Serializable{
     private int ccompraItens;
+    private int ccliente;
     private int qtde;
     private int cproduto;
     private int ccompra;
     private double valorUnitario;
+    private double total;
+    private String data;
 
+    public int getCcliente() {
+        return ccliente;
+    }
+
+    public void setCcliente(int ccliente) {
+        this.ccliente = ccliente;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+    
+    
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
     public int getCcompraItens() {
         return ccompraItens;
     }

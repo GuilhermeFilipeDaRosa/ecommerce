@@ -45,6 +45,10 @@
         <servlet-name>ExcluirItemCarrinhoServlet</servlet-name>
         <servlet-class>web.ExcluirItemCarrinhoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioServlet</servlet-name>
+        <servlet-class>web.RelatorioServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ClienteServlet</servlet-name>
         <url-pattern>/clienteServlet</url-pattern>
@@ -88,6 +92,10 @@
     <servlet-mapping>
         <servlet-name>ExcluirItemCarrinhoServlet</servlet-name>
         <url-pattern>/excluirItemCarrinhoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioServlet</servlet-name>
+        <url-pattern>/relatorioServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

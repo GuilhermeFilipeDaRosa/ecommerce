@@ -1,8 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package web;
 
 import beans.CompraBeanRemote;
 import beans.CompraItensBeanRemote;
-import beans.ProdutoBeanRemote;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,59 +24,57 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Compra;
-import model.Produto;
+import model.CompraItens;
 
 /**
  *
  * @author User
  */
-public class CompraServlet extends HttpServlet {
-
+public class RelatorioServlet extends HttpServlet {
     @EJB
-    private CompraBeanRemote beanCompra;
-    @EJB
-    private CompraItensBeanRemote beanCompraItens;
-    @EJB
-    private ProdutoBeanRemote beanProduto;
+    private CompraItensBeanRemote bean;
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
         PrintWriter saida = response.getWriter();
-        JsonObject json = null;
-        String retorno = "Não foi possivel efetuar a compra", content;
-        Produto produto = new Produto();
-        int ccliente, cproduto, qtde;
+
+        String content, condicao, dados = null;
+        JsonObject json = null, retorno;
 
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
-
+        
         content = leitor.lines().collect(Collectors.joining());
-
+        
         JsonReader reader = Json.createReader(new StringReader(content));
-        JsonObject dados = reader.readObject();
+        JsonObject form = reader.readObject();
 
-        ccliente = dados.getJsonNumber("ccliente").intValue();
-        cproduto = dados.getJsonNumber("cproduto").intValue();
-        qtde = dados.getJsonNumber("qtde").intValue();
+        condicao = form.getJsonString("descricao").getString();
 
         try {
-            produto = beanProduto.retornaDadosProduto(cproduto);
-            if (produto.getQtde() >= qtde) {
-                if (beanCompra.efetuaCompra(ccliente)) {
-                    retorno = beanCompraItens.salvaItensCompra(cproduto, beanCompra.retornaCCompra(ccliente), qtde, produto.getPreco_unitario());
-                    beanCompraItens.atualizaValorProduto(produto.getQtde() - qtde, cproduto);
+            for(CompraItens compraItens : bean.retornaCompras(condicao)){
+                if(dados != null){
+                    dados += ",";
                 }
-            }else{
-               retorno = "O produto não possui quantidade suficiente.";
+                json = Json.createObjectBuilder()
+                        .add("codigo", compraItens.getCproduto())
+                        .add("valor", compraItens.getValorUnitario())
+                        .add("qtde", compraItens.getQtde())
+                        .add("data", compraItens.getData()).build();
+                if(dados != null){
+                    dados += json.toString();
+                }else{
+                    dados = json.toString();
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         try {
-            json = Json.createObjectBuilder()
-                    .add("mensagem", retorno).build();
+            retorno = Json.createObjectBuilder()
+                    .add("compras", "["+dados+"]").build();
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

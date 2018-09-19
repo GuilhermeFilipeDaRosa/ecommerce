@@ -7,7 +7,9 @@ package beans;
 
 import dao.CompraItensDao;
 import java.sql.SQLException;
+import java.util.List;
 import javax.ejb.Stateless;
+import model.CompraItens;
 
 /**
  *
@@ -29,5 +31,10 @@ public class CompraItensBean implements CompraItensBeanRemote{
     @Override
     public void atualizaValorProduto(int qtde, int cproduto) throws SQLException{
          compraItensDao.atualizaValorProduto(qtde, cproduto);
+    }
+    
+    @Override
+    public List<CompraItens> retornaCompras(String condicao) throws Exception {
+        return compraItensDao.retornaCompras(condicao);
     }
 }

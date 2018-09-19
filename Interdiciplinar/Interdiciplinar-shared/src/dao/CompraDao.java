@@ -52,31 +52,6 @@ public class CompraDao {
         }
         return 0;
     }
-    public List<Compra> retornaCompras(String condicao) throws Exception {
-        List<Compra> list = new ArrayList<>();
-        Compra objeto;
-        String SQL = " SELECT * "
-                + " FROM COMPRA "
-                + " WHERE COMPRA.STATUS = '?'";
-        try {
-            PreparedStatement p = connection.prepareStatement(SQL);
-            p.setString(1, condicao);
-            ResultSet rs = p.executeQuery();
-            while (rs.next()) {
-                objeto = new Compra();
-                objeto.setCcompra(rs.getInt("CCOMPRA"));
-                objeto.setCcliente(rs.getInt("CCLIENTE"));
-                objeto.setData(rs.getString("DATA"));
-                objeto.setStatus(rs.getString("STATUS"));
-                list.add(objeto);
-            }
-            rs.close();
-            p.close();
-        } catch (SQLException ex) {
-            throw new Exception(ex);
-        }
-        return list;
-    }
     
     public List<Compra> retornaComprasCliente(int ccliente) throws Exception {
         List<Compra> list = new ArrayList<>();

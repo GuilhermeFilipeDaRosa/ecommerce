@@ -7,7 +7,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Compra;
+import model.CompraItens;
 import util.ConnectionUtil;
 
 /**
@@ -40,5 +45,38 @@ public class CompraItensDao {
             p.setInt(1, qtde);
             p.setInt(2, cproduto);
             p.execute();
+    }
+    
+    public List<CompraItens> retornaCompras(String condicao) throws Exception {
+        List<CompraItens> list = new ArrayList<>();
+        CompraItens objeto;
+        Compra objeto2;
+        String SQL = " SELECT COMPRAITENS.*,"
+                + " COMPRA.CCLIENTE, COMPRA.DATA"
+                + " FROM COMPRAITENS "
+                + " INNER JOIN COMPRA ON (COMPRA.CCOMPRA = COMPRAITENS.CCOMPRA)"
+                + " WHERE COMPRA.STATUS = '?'";
+        try {
+            PreparedStatement p = connection.prepareStatement(SQL);
+            p.setString(1, condicao);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                objeto = new CompraItens();
+                objeto2 = new Compra();
+                objeto.setCcompra(rs.getInt("CCOMPRA"));
+                objeto.setCcompraItens(rs.getInt("CCOMPRAITENS"));
+                objeto.setCproduto(rs.getInt("CPRODUTO"));
+                objeto.setQtde(rs.getInt("QTDE"));
+                objeto.setValorUnitario(rs.getDouble("VALORUNITARIO"));
+                objeto.setCcliente(rs.getInt("CCLIENTE"));
+                objeto.setData(rs.getString("DATA"));
+                list.add(objeto);
+            }
+            rs.close();
+            p.close();
+        } catch (SQLException ex) {
+            throw new Exception(ex);
+        }
+        return list;
     }
 }
