@@ -98,8 +98,8 @@ function efetuaCompra(e) {
             dados = {};
 
     if (document.querySelector('.dv-carrinho-produto-qtd').value) {
-        if (document.querySelector('.dv-carrinho-produto-qtd').value
-                <= document.querySelector('.dv-carrinho-produto-qtd-disponivel').innerText.split(' ')[0]) {
+        if (Number(document.querySelector('.dv-carrinho-produto-qtd').value)
+                <= Number(document.querySelector('.dv-carrinho-produto-qtd-disponivel').innerText.split(' ')[0])) {
             dados["ccliente"] = Number(localStorage.getItem("cod"));
             dados["cproduto"] = Number(e.target.parentNode.id);
             dados["qtde"] = Number(document.querySelector('.dv-carrinho-produto-qtd').value);

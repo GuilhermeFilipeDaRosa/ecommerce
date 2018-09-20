@@ -5,13 +5,13 @@
  */
 package web;
 
-import beans.CompraBeanRemote;
 import beans.CompraItensBeanRemote;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -23,7 +23,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Compra;
 import model.CompraItens;
 
 /**
@@ -50,7 +49,7 @@ public class RelatorioServlet extends HttpServlet {
         JsonReader reader = Json.createReader(new StringReader(content));
         JsonObject form = reader.readObject();
 
-        condicao = form.getJsonString("descricao").getString();
+        condicao = form.getJsonString("condicao").getString();
 
         try {
             for(CompraItens compraItens : bean.retornaCompras(condicao)){
@@ -58,9 +57,13 @@ public class RelatorioServlet extends HttpServlet {
                     dados += ",";
                 }
                 json = Json.createObjectBuilder()
-                        .add("codigo", compraItens.getCproduto())
-                        .add("valor", compraItens.getValorUnitario())
+                        .add("ccompra", compraItens.getCcompra())
+                        .add("ccompraItens", compraItens.getCcompraItens())
                         .add("qtde", compraItens.getQtde())
+                        .add("cproduto", compraItens.getCproduto())
+                        .add("unitario", compraItens.getValorUnitario())
+                        .add("total", compraItens.getTotal())
+                        .add("ccliente", compraItens.getCcliente())
                         .add("data", compraItens.getData()).build();
                 if(dados != null){
                     dados += json.toString();

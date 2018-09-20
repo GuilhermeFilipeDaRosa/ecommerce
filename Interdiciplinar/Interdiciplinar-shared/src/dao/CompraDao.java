@@ -35,7 +35,7 @@ public class CompraDao {
         java.util.Date d = new java.util.Date();
         java.sql.Date dt = new java.sql.Date(d.getTime());
         p.setDate(2, dt);
-        p.setString(3, "N");
+        p.setString(3, "P");
         p.execute();
         return true;
     }

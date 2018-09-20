@@ -25,6 +25,7 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
     width: 100%;
     min-width: 12em;
     display: block;
+    margin-bottom: -3px;
 }
 .fa-user, .fa-address-card{
     color: #fff;
@@ -38,21 +39,23 @@ a{text-decoration: none; color: inherit; cursor:pointer;}
 .barra-usuario{
     display:none;
 }
+#sair, #usuario, #areaAdm{
+    color:#fff;
+}
 .barra-usuario #usuario{
-    position: relative;
-    left: 40%;
-    font-size: 1em;
-    color: #fff;
+    position:relative;
+    left: 30%;
 }
 #sair{
+    left:69%;
+}
+#sair, #areaAdm{
     clear: both;
     position: relative;
-    left: 80%;
     font-size: 1em;
-    color: #fff;
     padding: 1em .7em 1em;
 }
-#sair:hover{
+#sair:hover, #areaAdm:hover{
     cursor:pointer;
     background-color: #000;
 }

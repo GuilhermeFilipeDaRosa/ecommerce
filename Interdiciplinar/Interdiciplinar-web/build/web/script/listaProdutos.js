@@ -70,10 +70,13 @@ function montaGrid(dados) {
     if (localStorage.getItem("usuario") !== null && localStorage.getItem("usuario") !== '') {
         document.querySelector(".barra-topo").style.display = "none";
         document.querySelector(".barra-usuario").style.display = "inline-block";
-        //document.querySelector(".areaAdm").style.display = "";
+        
         document.querySelector("#sair").addEventListener("click", sair);
         document.querySelector("#usuario").innerText = "Olá, " + localStorage.getItem("usuario") + "!";
         document.querySelector(".qtd-cart").innerText = localStorage.getItem("qtdeCarrinho");
+        if(localStorage.getItem("tipoUsuario") === "A"){
+            document.querySelector("#areaAdm").innerText = "Área administrativa";
+        }
     }
     document.querySelector(".fa-shopping-cart").addEventListener("click", abreCarrinho);
     document.querySelector("#lupa").addEventListener("click", pesquisaProduto);

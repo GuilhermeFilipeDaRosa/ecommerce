@@ -10,24 +10,6 @@
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/web/WEB-INF/glassfish-web.xml</file>
             <file>file:/C:/Interdiciplinar/Interdiciplinar/Interdiciplinar-web/nbproject/build-impl.xml</file>
         </group>
-        <group>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/admCategoria.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/login.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/admLogin.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/marca.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/MarcaServlet.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/principalCliente.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/listaProdutos.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/index.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/produto.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/admCliente.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/principalLogin.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/principalCarrinho.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/admMarca.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/LoginServlet.java</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/style/style.css</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/localStorage.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/cliente.js</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
