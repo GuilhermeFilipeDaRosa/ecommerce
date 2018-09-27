@@ -76,12 +76,16 @@ function montaGrid(dados) {
         document.querySelector(".qtd-cart").innerText = localStorage.getItem("qtdeCarrinho");
         if(localStorage.getItem("tipoUsuario") === "A"){
             document.querySelector("#areaAdm").innerText = "Área administrativa";
+            document.querySelector("#areaAdm").addEventListener("click", areaAdm);
         }
     }
     document.querySelector(".fa-shopping-cart").addEventListener("click", abreCarrinho);
     document.querySelector("#lupa").addEventListener("click", pesquisaProduto);
     document.querySelector(".campo-busca").addEventListener("keydown", pesquisaProdutoEnter);
     classificacao();
+}
+function areaAdm(){
+    window.location.href = "pags/admPrincipal.html";
 }
 function classificacao() {
     addEvento(document.querySelector("#categoria1"));

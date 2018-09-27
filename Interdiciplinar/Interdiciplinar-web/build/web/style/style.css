@@ -617,3 +617,11 @@ th {
 .voltar:hover{
     background-color: gray;
 }
+.divImgAdm{
+    overflow: hidden;
+}
+.imagemAdm{
+    width: 100%;
+    height: 50%;
+    opacity: 0.5;
+}
