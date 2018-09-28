@@ -20,6 +20,15 @@ public class CompraItens implements Serializable{
     private double valorUnitario;
     private double total;
     private String data;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getCcliente() {
         return ccliente;

@@ -85,7 +85,7 @@ function montaGrid(dados) {
     classificacao();
 }
 function areaAdm(){
-    window.location.href = "pags/admPrincipal.html";
+    window.location.href = "pags/admCliente.html";
 }
 function classificacao() {
     addEvento(document.querySelector("#categoria1"));

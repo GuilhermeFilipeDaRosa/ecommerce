@@ -12,12 +12,11 @@
         </group>
         <group>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/RelatorioServlet.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/pags/admCliente.html</file>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/carrinho.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/login.js</file>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/listaProdutos.js</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/style/style.css</file>
             <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/index.html</file>
-            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/src/java/web/CompraServlet.java</file>
+            <file>file:/C:/ecommerce/Interdiciplinar/Interdiciplinar-web/web/script/cliente.js</file>
         </group>
     </open-files>
 </project-private>

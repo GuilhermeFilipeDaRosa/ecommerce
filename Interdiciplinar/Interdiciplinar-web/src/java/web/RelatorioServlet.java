@@ -30,6 +30,7 @@ import model.CompraItens;
  * @author User
  */
 public class RelatorioServlet extends HttpServlet {
+
     @EJB
     private CompraItensBeanRemote bean;
 
@@ -39,49 +40,60 @@ public class RelatorioServlet extends HttpServlet {
         PrintWriter saida = response.getWriter();
 
         String content, condicao, dados = null;
-        JsonObject json = null, retorno;
+        JsonObject json, retorno = null;
 
         BufferedReader leitor = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), "UTF-8"));
-        
+
         content = leitor.lines().collect(Collectors.joining());
-        
+
         JsonReader reader = Json.createReader(new StringReader(content));
         JsonObject form = reader.readObject();
 
         condicao = form.getJsonString("condicao").getString();
 
         try {
-            for(CompraItens compraItens : bean.retornaCompras(condicao)){
-                if(dados != null){
-                    dados += ",";
+            if (bean.retornaCompras(condicao).size() > 0) {
+                
+                try {
+                    for (CompraItens compraItens : bean.retornaCompras(condicao)) {
+                        if (dados != null) {
+                            dados += ",";
+                        }
+                        json = Json.createObjectBuilder()
+                                .add("ccompra", compraItens.getCcompra())
+                                .add("ccompraItens", compraItens.getCcompraItens())
+                                .add("qtde", compraItens.getQtde())
+                                .add("cproduto", compraItens.getCproduto())
+                                .add("unitario", compraItens.getValorUnitario())
+                                .add("total", compraItens.getTotal())
+                                .add("ccliente", compraItens.getCcliente())
+                                .add("data", compraItens.getData())
+                                .add("status", compraItens.getStatus()).build();
+                        if (dados != null) {
+                            dados += json.toString();
+                        } else {
+                            dados = json.toString();
+                        }
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                json = Json.createObjectBuilder()
-                        .add("ccompra", compraItens.getCcompra())
-                        .add("ccompraItens", compraItens.getCcompraItens())
-                        .add("qtde", compraItens.getQtde())
-                        .add("cproduto", compraItens.getCproduto())
-                        .add("unitario", compraItens.getValorUnitario())
-                        .add("total", compraItens.getTotal())
-                        .add("ccliente", compraItens.getCcliente())
-                        .add("data", compraItens.getData()).build();
-                if(dados != null){
-                    dados += json.toString();
-                }else{
-                    dados = json.toString();
+                
+                try {
+                    retorno = Json.createObjectBuilder()
+                            .add("compras", "[" + dados + "]").build();
+                } catch (Exception ex) {
+                    Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }else{
+                retorno = Json.createObjectBuilder()
+                            .add("compras", "nada").build();
             }
         } catch (Exception ex) {
-            Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            retorno = Json.createObjectBuilder()
-                    .add("compras", "["+dados+"]").build();
-        } catch (Exception ex) {
-            Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelatorioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        saida.write(json.toString());
+        saida.write(retorno.toString());
     }
 }
